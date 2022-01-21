@@ -109,13 +109,13 @@ public class Trajet {
 		this.placesDisponibles = placesDisponibles;
 	}
 
-//	public List<Gare> getGares() {
-//		return gares;
-//	}
+	//public List<Gare> getGares() {
+	//	return gares;
+	//}
 
-//	public void setGares(List<Gare> gares) {
-//		this.gares = gares;
-//	}
+	//public void setGares(List<Gare> gares) {
+	//	this.gares = gares;
+	//}
 
 	public Train getTrain() {
 		return train;
@@ -125,21 +125,21 @@ public class Trajet {
 		this.train = train;
 	}
 
-//	public List<Reservation> getReservations() {
-//		return reservations;
-//	}
+	//public List<Reservation> getReservations() {
+	//	return reservations;
+	//}
 
-//	public void setReservations(List<Reservation> reservations) {
-//		this.reservations = reservations;
-//	}
+	//public void setReservations(List<Reservation> reservations) {
+	//	this.reservations = reservations;
+	//}
 
-//	@Override
-//	public String toString() {
-//		return "Trajet [id=" + id + ", gareDepart=" + gareDepart + ", gareArrivee=" + gareArrivee + ", heureDepart="
-//				+ heureDepart + ", heureArrivee=" + heureArrivee + ", placesReservees=" + placesReservees
-//				+ ", placesDisponibles=" + placesDisponibles + ", gares=" + gares + ", train=" + train
-//				+ ", reservations=" + reservations + "]";
-//	}
+	//@Override
+	//public String toString() {
+	//	return "Trajet [id=" + id + ", gareDepart=" + gareDepart + ", gareArrivee=" + gareArrivee + ", heureDepart="
+	//			+ heureDepart + ", heureArrivee=" + heureArrivee + ", placesReservees=" + placesReservees
+	//			+ ", placesDisponibles=" + placesDisponibles + ", gares=" + gares + ", train=" + train
+	//			+ ", reservations=" + reservations + "]";
+	//}
 
 
 
