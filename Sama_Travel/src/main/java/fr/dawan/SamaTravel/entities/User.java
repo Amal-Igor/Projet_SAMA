@@ -1,16 +1,32 @@
 package fr.dawan.SamaTravel.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+@Entity
 public abstract class User {
 	
-	// id, nom, prénom, email, password
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String nom;  
 	private String prenom;
 	private String email;
 	private String password; 
 	
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	private List<Reservation> reservations;
+	
 	public User() {
 		super();
+		reservations = new ArrayList<Reservation>();
 	}
 
 	public User(String nom, String prenom, String email, String password) {
@@ -19,6 +35,7 @@ public abstract class User {
 		this.prenom = prenom;
 		this.email = email;
 		this.password = password;
+		reservations = new ArrayList<Reservation>();
 	}
 
 	public int getId() {
@@ -61,16 +78,18 @@ public abstract class User {
 		this.password = password;
 	}
 
+	public List<Reservation> getReservations() {
+		return reservations;
+	}
+
+	public void setReservations(List<Reservation> reservations) {
+		this.reservations = reservations;
+	}
+
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", email=" + email + ", password=" + password
-				+ "]";
+				+ ", reservations=" + reservations + "]";
 	}
-	
-	
-	
-	
-	
-	
 
 }

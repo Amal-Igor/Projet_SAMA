@@ -1,20 +1,43 @@
 package fr.dawan.SamaTravel.entities;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+
+@Entity
 public class Trajet {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String gareDepart;
 	private String gareArrivee;
 	private Date heureDepart;  
 	private Date heureArrivee;
-	// private int idTrain
 	private int placesReservees;
 	private int placesDisponibles;
 	
+	@ManyToMany(mappedBy = "trajets", cascade = CascadeType.ALL)
+	private List<Gare> gares;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	private Train train;
+	
+	@ManyToMany(mappedBy = "trajets", cascade = CascadeType.ALL)
+	private List<Reservation> reservations;
+	
 	public Trajet() {
 		super();
+		gares = new ArrayList<Gare>();
+		reservations = new ArrayList<Reservation>();
 	}
 
 	public Trajet(String gareDepart, String gareArrivee, Date heureDepart, Date heureArrivee, int placesReservees,
@@ -26,6 +49,8 @@ public class Trajet {
 		this.heureArrivee = heureArrivee;
 		this.placesReservees = placesReservees;
 		this.placesDisponibles = placesDisponibles;
+		gares = new ArrayList<Gare>();
+		reservations = new ArrayList<Reservation>();
 	}
 
 	public int getId() {
@@ -84,16 +109,39 @@ public class Trajet {
 		this.placesDisponibles = placesDisponibles;
 	}
 
+	public List<Gare> getGares() {
+		return gares;
+	}
+
+	public void setGares(List<Gare> gares) {
+		this.gares = gares;
+	}
+
+	public Train getTrain() {
+		return train;
+	}
+
+	public void setTrain(Train train) {
+		this.train = train;
+	}
+
+	public List<Reservation> getReservations() {
+		return reservations;
+	}
+
+	public void setReservations(List<Reservation> reservations) {
+		this.reservations = reservations;
+	}
+
 	@Override
 	public String toString() {
 		return "Trajet [id=" + id + ", gareDepart=" + gareDepart + ", gareArrivee=" + gareArrivee + ", heureDepart="
 				+ heureDepart + ", heureArrivee=" + heureArrivee + ", placesReservees=" + placesReservees
-				+ ", placesDisponibles=" + placesDisponibles + "]";
+				+ ", placesDisponibles=" + placesDisponibles + ", gares=" + gares + ", train=" + train
+				+ ", reservations=" + reservations + "]";
 	}
-	
-	
-	
-	
-	
 
+
+
+	
 }
