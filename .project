@@ -3,6 +3,7 @@
 	<name>Projet_SAMA</name>
 	<comment></comment>
 	<projects>
+		<project>Sama_Travel</project>
 	</projects>
 	<buildSpec>
 	</buildSpec>
