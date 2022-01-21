@@ -25,19 +25,19 @@ public class Trajet {
 	private int placesReservees;
 	private int placesDisponibles;
 	
-	@ManyToMany(mappedBy = "trajets", cascade = CascadeType.ALL)
-	private List<Gare> gares;
+	//@ManyToMany(mappedBy = "trajets", cascade = CascadeType.ALL)
+	//private List<Gare> gares;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Train train;
 	
-	@ManyToMany(mappedBy = "trajets", cascade = CascadeType.ALL)
-	private List<Reservation> reservations;
+	//@ManyToMany(mappedBy = "trajets", cascade = CascadeType.ALL)
+	//private List<Reservation> reservations;
 	
 	public Trajet() {
 		super();
-		gares = new ArrayList<Gare>();
-		reservations = new ArrayList<Reservation>();
+		//gares = new ArrayList<Gare>();
+		//reservations = new ArrayList<Reservation>();
 	}
 
 	public Trajet(String gareDepart, String gareArrivee, Date heureDepart, Date heureArrivee, int placesReservees,
@@ -49,8 +49,8 @@ public class Trajet {
 		this.heureArrivee = heureArrivee;
 		this.placesReservees = placesReservees;
 		this.placesDisponibles = placesDisponibles;
-		gares = new ArrayList<Gare>();
-		reservations = new ArrayList<Reservation>();
+		//gares = new ArrayList<Gare>();
+		//reservations = new ArrayList<Reservation>();
 	}
 
 	public int getId() {
@@ -109,13 +109,13 @@ public class Trajet {
 		this.placesDisponibles = placesDisponibles;
 	}
 
-	public List<Gare> getGares() {
-		return gares;
-	}
+//	public List<Gare> getGares() {
+//		return gares;
+//	}
 
-	public void setGares(List<Gare> gares) {
-		this.gares = gares;
-	}
+//	public void setGares(List<Gare> gares) {
+//		this.gares = gares;
+//	}
 
 	public Train getTrain() {
 		return train;
@@ -125,21 +125,21 @@ public class Trajet {
 		this.train = train;
 	}
 
-	public List<Reservation> getReservations() {
-		return reservations;
-	}
+//	public List<Reservation> getReservations() {
+//		return reservations;
+//	}
 
-	public void setReservations(List<Reservation> reservations) {
-		this.reservations = reservations;
-	}
+//	public void setReservations(List<Reservation> reservations) {
+//		this.reservations = reservations;
+//	}
 
-	@Override
-	public String toString() {
-		return "Trajet [id=" + id + ", gareDepart=" + gareDepart + ", gareArrivee=" + gareArrivee + ", heureDepart="
-				+ heureDepart + ", heureArrivee=" + heureArrivee + ", placesReservees=" + placesReservees
-				+ ", placesDisponibles=" + placesDisponibles + ", gares=" + gares + ", train=" + train
-				+ ", reservations=" + reservations + "]";
-	}
+//	@Override
+//	public String toString() {
+//		return "Trajet [id=" + id + ", gareDepart=" + gareDepart + ", gareArrivee=" + gareArrivee + ", heureDepart="
+//				+ heureDepart + ", heureArrivee=" + heureArrivee + ", placesReservees=" + placesReservees
+//				+ ", placesDisponibles=" + placesDisponibles + ", gares=" + gares + ", train=" + train
+//				+ ", reservations=" + reservations + "]";
+//	}
 
 
 
