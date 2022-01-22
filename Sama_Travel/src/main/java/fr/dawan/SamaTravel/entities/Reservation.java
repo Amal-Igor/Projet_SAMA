@@ -21,23 +21,23 @@ public class Reservation {
 	private int id;
 	private int prix;
 	
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(targetEntity = Trajet.class, cascade = CascadeType.ALL)
 	private List<Trajet> trajets;
 	
 	@ManyToOne(targetEntity = User.class, cascade = CascadeType.ALL)
-	private List<User> user;
+	private List<User> users;
 	
 	public Reservation() {
 		super();
 		trajets = new ArrayList<Trajet>();
-		user = new ArrayList<User>();
+		users = new ArrayList<User>();
 	}
 
 	public Reservation(int prix) {
 		super();
 		this.prix = prix;
 		trajets = new ArrayList<Trajet>();
-		user = new ArrayList<User>();
+		users = new ArrayList<User>();
 	}
 
 	public int getId() {
@@ -65,16 +65,16 @@ public class Reservation {
 	}
 
 	public List<User> getUser() {
-		return user;
+		return users;
 	}
 
 	public void setUser(List<User> user) {
-		this.user = user;
+		this.users = user;
 	}
 
 	@Override
 	public String toString() {
-		return "Reservation [id=" + id + ", prix=" + prix + ", trajets=" + trajets + ", user=" + user + "]";
+		return "Reservation [id=" + id + ", prix=" + prix + ", trajets=" + trajets + ", user=" + users + "]";
 	}
 
 }
