@@ -2,10 +2,12 @@ package fr.dawan.SamaTravel.entities;
 
 import java.sql.Date;
 
+import javax.persistence.Entity;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-@Component
+@Entity
 public class Client extends User{
 	
 	private Date dateNaissance;
@@ -16,7 +18,7 @@ public class Client extends User{
 	public Client() {
 		super();
 	}
-
+	
 	public Client(Date dateNaissance, String adresse, String telephone, int pointsMiles) {
 		super();
 		this.dateNaissance = dateNaissance;

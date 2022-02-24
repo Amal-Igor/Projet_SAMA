@@ -20,7 +20,8 @@ public class Gare {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String ville;
-	private int codePostal;
+	private String regionAdmin;
+	private String stopArea;
 	
 	@ManyToMany(cascade = CascadeType.ALL)
 	private List<Trajet> trajets;
@@ -30,10 +31,11 @@ public class Gare {
 		trajets = new ArrayList<Trajet>();
 	}
 
-	public Gare(String ville, int codePostal) {
+	public Gare(String ville, String regionAdmin,String stopArea ) {
 		super();
 		this.ville = ville;
-		this.codePostal = codePostal;
+		this.regionAdmin = regionAdmin;
+		this.stopArea = stopArea;
 		trajets = new ArrayList<Trajet>();
 	}
 
@@ -53,15 +55,23 @@ public class Gare {
 		this.ville = ville;
 	}
   
-	public int getCodePostal() {
-		return codePostal;
+	
+
+	public String getRegionAdmin() {
+		return regionAdmin;
 	}
 
-	public void setCodePostal(int codePostal) {
-		this.codePostal = codePostal;
+	public void setRegionAdmin(String regionAdmin) {
+		this.regionAdmin = regionAdmin;
 	}
-	
-	
+
+	public String getStopArea() {
+		return stopArea;
+	}
+
+	public void setStopArea(String stopArea) {
+		this.stopArea = stopArea;
+	}
 
 	public List<Trajet> getTrajets() {
 		return trajets;
@@ -73,8 +83,10 @@ public class Gare {
 
 	@Override
 	public String toString() {
-		return "Gare [id=" + id + ", ville=" + ville + ", codePostal=" + codePostal + ", trajets=" + trajets + "]";
+		return "Gare [id=" + id + ", ville=" + ville + ", regionAdmin=" + regionAdmin + ", stopArea=" + stopArea
+				+ ", trajets=" + trajets + "]";
 	}
+
 
 
 	

@@ -26,20 +26,20 @@ public class Reservation {
 	@ManyToMany(targetEntity = Trajet.class, cascade = CascadeType.ALL)
 	private List<Trajet> trajets;
 	
-	@ManyToOne(targetEntity = User.class, cascade = CascadeType.ALL)
-	private List<User> users;
+	@ManyToOne(targetEntity = Client.class, cascade = CascadeType.ALL)
+	private List<Client> users;
 	
 	public Reservation() {
 		super();
 		trajets = new ArrayList<Trajet>();
-		users = new ArrayList<User>();
+		//users = new ArrayList<Client>();
 	}
 
 	public Reservation(int prix) {
 		super();
 		this.prix = prix;
 		trajets = new ArrayList<Trajet>();
-		users = new ArrayList<User>();
+		users = new ArrayList<Client>();
 	}
 
 	public int getId() {
@@ -66,12 +66,14 @@ public class Reservation {
 		this.trajets = trajets;
 	}
 
-	public List<User> getUser() {
+
+
+	public List<Client> getUsers() {
 		return users;
 	}
 
-	public void setUser(List<User> user) {
-		this.users = user;
+	public void setUsers(List<Client> users) {
+		this.users = users;
 	}
 
 	@Override
