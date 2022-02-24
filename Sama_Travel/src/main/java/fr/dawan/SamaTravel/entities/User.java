@@ -1,7 +1,6 @@
 package fr.dawan.SamaTravel.entities;
 
 import java.util.ArrayList;
-
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -11,6 +10,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import org.springframework.stereotype.Component;
+
+@Component
 @Entity
 public abstract class User {
 	
