@@ -1,5 +1,8 @@
 package fr.dawan.SamaTravel.entities;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Employee extends User{ 
 	
 	private String role;

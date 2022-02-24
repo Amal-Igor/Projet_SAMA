@@ -11,8 +11,10 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
+import org.springframework.stereotype.Component;
 
 
+@Component
 @Entity
 public class Reservation {
 	

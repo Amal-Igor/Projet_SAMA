@@ -10,6 +10,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import org.springframework.stereotype.Component;
+
+@Component
 @Entity
 public class Gare {
 	
