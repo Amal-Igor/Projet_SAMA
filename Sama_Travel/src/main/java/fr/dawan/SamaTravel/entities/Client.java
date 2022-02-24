@@ -2,6 +2,7 @@ package fr.dawan.SamaTravel.entities;
 
 import java.sql.Date;
 
+
 public class Client extends User{
 	
 	private Date dateNaissance;
