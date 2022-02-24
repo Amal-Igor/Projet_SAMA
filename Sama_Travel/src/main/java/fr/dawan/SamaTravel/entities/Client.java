@@ -2,6 +2,9 @@ package fr.dawan.SamaTravel.entities;
 
 import java.sql.Date;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Client extends User{
 	
 	private Date dateNaissance;

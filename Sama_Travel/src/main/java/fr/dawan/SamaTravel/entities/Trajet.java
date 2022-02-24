@@ -10,8 +10,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 
+import org.springframework.stereotype.Component;
+
+@Component
 @Entity
 public class Trajet {
 	
@@ -27,9 +29,6 @@ public class Trajet {
 	
 	@ManyToMany(mappedBy = "trajets", cascade = CascadeType.ALL)
 	private List<Gare> gares;
-	
-	@ManyToOne(cascade = CascadeType.ALL)
-	private Train train;
 	
 	@ManyToMany(mappedBy = "trajets", cascade = CascadeType.ALL)
 	private List<Reservation> reservations;
@@ -117,14 +116,6 @@ public class Trajet {
 		this.gares = gares;
 	}
 
-	public Train getTrain() {
-		return train;
-	}
-
-	public void setTrain(Train train) {
-		this.train = train;
-	}
-
 	public List<Reservation> getReservations() {
 		return reservations;
 	}
@@ -137,7 +128,7 @@ public class Trajet {
 	public String toString() {
 		return "Trajet [id=" + id + ", gareDepart=" + gareDepart + ", gareArrivee=" + gareArrivee + ", heureDepart="
 				+ heureDepart + ", heureArrivee=" + heureArrivee + ", placesReservees=" + placesReservees
-				+ ", placesDisponibles=" + placesDisponibles + ", gares=" + gares + ", train=" + train
+				+ ", placesDisponibles=" + placesDisponibles + ", gares=" + gares
 				+ ", reservations=" + reservations + "]";
 	}
 
