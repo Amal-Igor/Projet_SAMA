@@ -2,13 +2,10 @@ package fr.dawan.SamaTravel.entities;
 
 import java.sql.Date;
 
-<<<<<<< HEAD
 
-=======
 import org.springframework.stereotype.Component;
 
 @Component
->>>>>>> refs/remotes/origin/main
 public class Client extends User{
 	
 	private Date dateNaissance;
