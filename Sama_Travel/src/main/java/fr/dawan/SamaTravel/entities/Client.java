@@ -61,10 +61,5 @@ public class Client extends User{
 		return "Client [dateNaissance=" + dateNaissance + ", adresse=" + adresse + ", telephone=" + telephone
 				+ ", pointsMiles=" + pointsMiles + "]";
 	}
-	
-	
-	
-	
-	
 
 }
