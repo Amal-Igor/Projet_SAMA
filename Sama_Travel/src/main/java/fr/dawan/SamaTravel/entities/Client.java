@@ -4,8 +4,7 @@ import java.sql.Date;
 
 import javax.persistence.Entity;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+
 
 @Entity
 public class Client extends User{

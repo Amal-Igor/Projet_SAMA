@@ -23,8 +23,8 @@ public abstract class User {
 	private String email;
 	private String password; 
 	
-	//@OneToMany(mappedBy = "users", cascade = CascadeType.ALL)
-	//private List<Reservation> reservations;
+	@OneToMany(mappedBy = "users", cascade = CascadeType.ALL)
+	private List<Reservation> reservations;
 	
 
 
@@ -39,7 +39,7 @@ public abstract class User {
 		this.prenom = prenom;
 		this.email = email;
 		this.password = password;
-		//reservations = new ArrayList<Reservation>();
+		reservations = new ArrayList<Reservation>();
 	}
 
 	public int getId() {
@@ -82,13 +82,21 @@ public abstract class User {
 		this.password = password;
 	}
 
-	//public List<Reservation> getReservations() {
-	//	return reservations;
-	//}
+	public List<Reservation> getReservations() {
+		return reservations;
+	}
 
-	//public void setReservations(List<Reservation> reservations) {
-	//	this.reservations = reservations;
-	//}
+	public void setReservations(List<Reservation> reservations) {
+		this.reservations = reservations;
+	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", email=" + email + ", password=" + password
+				+ ", reservations=" + reservations + "]";
+	}
+	
+	
 
 
 }

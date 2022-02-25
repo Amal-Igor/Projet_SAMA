@@ -32,7 +32,7 @@ public class Reservation {
 	public Reservation() {
 		super();
 		trajets = new ArrayList<Trajet>();
-		//users = new ArrayList<Client>();
+		users = new ArrayList<Client>();
 	}
 
 	public Reservation(int prix) {
