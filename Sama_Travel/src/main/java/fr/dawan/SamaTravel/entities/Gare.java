@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Entity
-//@Table(name = "gares")
+@Table(name = "gares")
 public class Gare {
 	
 	@Id
@@ -66,7 +66,7 @@ public class Gare {
 	public void setRegionAdmin(String regionAdmin) {
 		this.regionAdmin = regionAdmin;
 	}
-<<<<<<< HEAD
+
 
 	public String getStopArea() {
 		return stopArea;
@@ -75,8 +75,7 @@ public class Gare {
 	public void setStopArea(String stopArea) {
 		this.stopArea = stopArea;
 	}
-=======
->>>>>>> refs/remotes/origin/main
+
 
 	public List<Trajet> getTrajets() {
 		return trajets;
@@ -92,13 +91,5 @@ public class Gare {
 				+ ", trajets=" + trajets + "]";
 	}
 
-<<<<<<< HEAD
 
-
-	
-	
-	
-
-=======
->>>>>>> refs/remotes/origin/main
 }
