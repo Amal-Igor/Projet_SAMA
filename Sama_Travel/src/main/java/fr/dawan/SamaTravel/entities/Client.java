@@ -4,9 +4,11 @@ import java.sql.Date;
 
 import javax.persistence.Entity;
 
+import org.springframework.stereotype.Component;
 
 
 @Entity
+@Component
 public class Client extends User{
 	
 	private Date dateNaissance;
@@ -63,10 +65,6 @@ public class Client extends User{
 		return "Client [dateNaissance=" + dateNaissance + ", adresse=" + adresse + ", telephone=" + telephone
 				+ ", pointsMiles=" + pointsMiles + "]";
 	}
-	
-	
-	
-	
-	
+
 
 }
