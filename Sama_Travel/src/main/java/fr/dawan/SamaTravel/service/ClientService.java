@@ -1,26 +1,18 @@
 package fr.dawan.SamaTravel.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import java.util.List;
 
-import fr.dawan.SamaTravel.Repositories.IClientRepository;
+import fr.dawan.SamaTravel.dto.ClientDto;
 import fr.dawan.SamaTravel.entities.Client;
 
+public interface ClientService {
 
-
-//TODO: Finir l'implémentation de la fonctionnalité d'inscription
-
-@Service
-public class ClientService {
 	
-	@Autowired
-	IClientRepository repo;
+	public void insertUser(Client c);
 	
+	public void update(Client c);
 	
-	//Methode pour enregistrée un user
-	public void insertUser(Client c) {
-		repo.save(c);
-	}
-	
-	
+	public Client loadUserByEmail(String email);
+		
+	ClientDto getClientByEmail(String email);
 }

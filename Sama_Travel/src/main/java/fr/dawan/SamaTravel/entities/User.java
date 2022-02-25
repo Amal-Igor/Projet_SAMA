@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,6 +21,8 @@ public abstract class User {
 	private int id;
 	private String nom;  
 	private String prenom;
+	
+	@Column(unique=true) 
 	private String email;
 	private String password; 
 	
@@ -30,7 +33,7 @@ public abstract class User {
 
 	public User() {
 		super();
-		//reservations = new ArrayList<Reservation>();
+		reservations = new ArrayList<Reservation>();
 	}
 
 	public User(String nom, String prenom, String email, String password) {
