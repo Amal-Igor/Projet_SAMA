@@ -12,7 +12,6 @@ import javax.persistence.OneToMany;
 
 import org.springframework.stereotype.Component;
 
-@Component
 @Entity
 public abstract class User {
 	
@@ -27,9 +26,11 @@ public abstract class User {
 	@OneToMany(mappedBy = "users", cascade = CascadeType.ALL)
 	private List<Reservation> reservations;
 	
+
+
 	public User() {
 		super();
-		reservations = new ArrayList<Reservation>();
+		//reservations = new ArrayList<Reservation>();
 	}
 
 	public User(String nom, String prenom, String email, String password) {
@@ -94,5 +95,8 @@ public abstract class User {
 		return "User [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", email=" + email + ", password=" + password
 				+ ", reservations=" + reservations + "]";
 	}
+	
+	
+
 
 }

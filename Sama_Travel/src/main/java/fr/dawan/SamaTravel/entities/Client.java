@@ -2,12 +2,13 @@ package fr.dawan.SamaTravel.entities;
 
 import java.sql.Date;
 
-
+import javax.persistence.Entity;
 
 import org.springframework.stereotype.Component;
 
+
+@Entity
 @Component
-//>>>>>>> branch 'main' of https://github.com/Amal-Igor/Projet_SAMA.git
 public class Client extends User{
 	
 	private Date dateNaissance;
@@ -18,7 +19,7 @@ public class Client extends User{
 	public Client() {
 		super();
 	}
-
+	
 	public Client(Date dateNaissance, String adresse, String telephone, int pointsMiles) {
 		super();
 		this.dateNaissance = dateNaissance;
@@ -64,5 +65,6 @@ public class Client extends User{
 		return "Client [dateNaissance=" + dateNaissance + ", adresse=" + adresse + ", telephone=" + telephone
 				+ ", pointsMiles=" + pointsMiles + "]";
 	}
+
 
 }
