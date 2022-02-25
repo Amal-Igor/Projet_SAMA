@@ -26,16 +26,13 @@ public class GareServiceImpl implements GareService{
 		return (List<Gare>) iGareRepository.findAll();
 	}
 
-	@Override
 	public Gare findById(int id) {
-		Optional<Gare> result = iGareRepository.findById(id);
-		Gare gare = null;
-		if(result.isPresent()) {
-			gare = result.get();
-		} else {
-			throw new RuntimeException("No employe found with this Id : : " + id);
+		Optional<Gare> prod = iGareRepository.findById(id);
+		if(prod.isPresent()){
+			return prod.get();
+		}else {
+			return null;
 		}
-		return gare;
 	}
 
 	@Override

@@ -9,11 +9,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
 @Component
 @Entity
+//@Table(name = "gares")
 public class Gare {
 	
 	@Id
@@ -60,8 +62,6 @@ public class Gare {
 	public void setCodePostal(int codePostal) {
 		this.codePostal = codePostal;
 	}
-	
-	
 
 	public List<Trajet> getTrajets() {
 		return trajets;
@@ -75,10 +75,5 @@ public class Gare {
 	public String toString() {
 		return "Gare [id=" + id + ", ville=" + ville + ", codePostal=" + codePostal + ", trajets=" + trajets + "]";
 	}
-
-
-	
-	
-	
 
 }
