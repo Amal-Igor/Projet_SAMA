@@ -8,5 +8,5 @@ import fr.dawan.SamaTravel.entities.User;
 
 public interface IUserRepository extends JpaRepository<User, Integer> {
 	
-	List<User> findAllEmail();
+	//List<User> findAllEmail();
 }
