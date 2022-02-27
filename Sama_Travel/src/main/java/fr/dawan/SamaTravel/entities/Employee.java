@@ -3,7 +3,7 @@ package fr.dawan.SamaTravel.entities;
 import org.springframework.stereotype.Component;
 
 @Component
-public class Employee extends User{ 
+public class Employee extends AppUser{ 
 	
 	private String poste;
 

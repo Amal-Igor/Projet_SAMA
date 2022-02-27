@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 
 @Entity
-public class Client extends User{
+public class Client extends AppUser{
 	
 	private Date dateNaissance;
 	private String adresse;

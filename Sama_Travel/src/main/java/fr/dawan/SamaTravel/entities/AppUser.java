@@ -17,7 +17,7 @@ import javax.persistence.OneToMany;
 import org.springframework.stereotype.Component;
 
 @Entity
-public abstract class User {
+public class AppUser {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,17 +41,17 @@ public abstract class User {
 	private Collection<UserRole> roles = new ArrayList();
 	
 
-	public User() {
+	public AppUser() {
 		super();
 		reservations = new ArrayList<Reservation>();
 	}
 
-	public User(String nom, String prenom, String userName, String email, String password, Collection<UserRole> roles) {
+	public AppUser(String nom, String prenom, String username, String email, String password, Collection<UserRole> roles) {
 		super();
 		this.nom = nom;
 		this.prenom = prenom;
 		this.email = email;
-		this.username = userName;
+		this.username = username;
 		this.password = password;
 		this.roles = roles;
 		reservations = new ArrayList<Reservation>();
