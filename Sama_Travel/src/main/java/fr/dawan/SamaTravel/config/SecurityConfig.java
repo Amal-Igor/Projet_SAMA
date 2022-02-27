@@ -1,4 +1,4 @@
-package fr.dawan.SamaTravel.entities;
+package fr.dawan.SamaTravel.config;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -15,11 +15,12 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 @Configuration
 @EnableWebSecurity
-public class CrossOriginConfig extends WebSecurityConfigurerAdapter{
+public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable().cors().configurationSource(corsConfigurationSource());
+        http.csrf().disable()
+        .cors().configurationSource(corsConfigurationSource());
     } 
     
     @Bean

@@ -1,4 +1,4 @@
-package fr.dawan.SamaTravel.Repositories;
+package fr.dawan.SamaTravel.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

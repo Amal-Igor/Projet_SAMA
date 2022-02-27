@@ -1,14 +1,17 @@
 package fr.dawan.SamaTravel.entities;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 import org.springframework.stereotype.Component;
@@ -24,24 +27,33 @@ public abstract class User {
 	
 	@Column(unique=true) 
 	private String email;
+	
+	@Column(unique=true)
+	private String username;
+	 
 	private String password; 
 	
 	@OneToMany(mappedBy = "users", cascade = CascadeType.ALL)
 	private List<Reservation> reservations;
 	
-
+	
+	@ManyToMany(fetch= FetchType.EAGER)
+	private Collection<UserRole> roles = new ArrayList();
+	
 
 	public User() {
 		super();
 		reservations = new ArrayList<Reservation>();
 	}
 
-	public User(String nom, String prenom, String email, String password) {
+	public User(String nom, String prenom, String userName, String email, String password, Collection<UserRole> roles) {
 		super();
 		this.nom = nom;
 		this.prenom = prenom;
 		this.email = email;
+		this.username = userName;
 		this.password = password;
+		this.roles = roles;
 		reservations = new ArrayList<Reservation>();
 	}
 
@@ -84,6 +96,14 @@ public abstract class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	public Collection<UserRole> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Collection<UserRole> roles) {
+		this.roles = roles;
+	}
 
 	public List<Reservation> getReservations() {
 		return reservations;
@@ -93,12 +113,19 @@ public abstract class User {
 		this.reservations = reservations;
 	}
 
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", email=" + email + ", password=" + password
-				+ ", reservations=" + reservations + "]";
+		return "User [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", email=" + email + ", username=" + username
+				+ ", password=" + password + ", reservations=" + reservations + ", roles=" + roles + "]";
 	}
-	
 	
 
 

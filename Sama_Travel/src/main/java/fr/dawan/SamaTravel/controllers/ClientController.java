@@ -14,10 +14,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import fr.dawan.SamaTravel.Repositories.IClientRepository;
-
 import fr.dawan.SamaTravel.dto.ClientDto;
 import fr.dawan.SamaTravel.entities.Client;
+import fr.dawan.SamaTravel.repositories.IClientRepository;
 import fr.dawan.SamaTravel.service.ClientService;
 
 //TODO: Ajouter le cas ou un user est mal inséré

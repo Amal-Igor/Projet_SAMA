@@ -4,9 +4,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import fr.dawan.SamaTravel.Repositories.IClientRepository;
 import fr.dawan.SamaTravel.dto.ClientDto;
 import fr.dawan.SamaTravel.entities.Client;
+import fr.dawan.SamaTravel.repositories.IClientRepository;
 
 //TODO: Finir l'implémentation de la fonctionnalité d'inscription
 

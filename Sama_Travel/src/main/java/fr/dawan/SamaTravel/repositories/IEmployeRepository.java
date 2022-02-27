@@ -1,4 +1,4 @@
-package fr.dawan.SamaTravel.Repositories;
+package fr.dawan.SamaTravel.repositories;
 
 public interface IEmployeRepository {
 

@@ -5,28 +5,28 @@ import org.springframework.stereotype.Component;
 @Component
 public class Employee extends User{ 
 	
-	private String role;
+	private String poste;
 
 	public Employee() {
 		super();
 	}
 
-	public Employee(String role) {
+	public Employee(String poste) {
 		super();
-		this.role = role;
+		this.poste = poste;
 	}
 
-	public String getRole() {
-		return role;
+	public String getposte() {
+		return poste;
 	}
 
-	public void setRole(String role) {
-		this.role = role;
+	public void setposte(String poste) {
+		this.poste = poste;
 	}
 
 	@Override
 	public String toString() {
-		return "Employee [role=" + role + "]";
+		return "Employee [poste=" + poste + "]";
 	}
 
 }

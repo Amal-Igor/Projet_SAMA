@@ -6,8 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import fr.dawan.SamaTravel.Repositories.IGareRepository;
 import fr.dawan.SamaTravel.entities.Gare;
+import fr.dawan.SamaTravel.repositories.IGareRepository;
 
 @Service
 public class GareServiceImpl implements GareService{
