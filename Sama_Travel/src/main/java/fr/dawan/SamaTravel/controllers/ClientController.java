@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.dawan.SamaTravel.Repositories.IClientRepository;
+import fr.dawan.SamaTravel.Repositories.IUserRepository;
 import fr.dawan.SamaTravel.dto.ClientDto;
 import fr.dawan.SamaTravel.entities.Client;
 import fr.dawan.SamaTravel.service.ClientService;
@@ -25,6 +26,11 @@ public class ClientController {
 
 	@Autowired
 	IClientRepository repo;
+	
+	
+	//Injection User Controller pour vérifier présence ou non du mail input -- Methode Login
+	@Autowired
+	IUserRepository userRepo;
 
 	@Autowired
 	private ModelMapper modelMapper;
@@ -40,10 +46,40 @@ public class ClientController {
 
 	@PostMapping(value = "/login", consumes = "application/json", produces = "text/plain")
 	public ResponseEntity<String> loginClient(@RequestBody ClientDto clientDto) {
-		// return new ResponseEntity<String>("Fail", HttpStatus.NOT_FOUND);
+		//
+
 		
-		ClientDto client = modelMapper.map(repo.findByEmail(clientDto.getEmail()),ClientDto.class);
-		return new ResponseEntity<String>("Vous êtes connecté !", HttpStatus.CREATED);
+		
+		//Réupération des inputs côté client pour effectuer la comapraison avec les infos compris dans la DB(donc repo)
+		String inputedEmail = clientDto.getEmail();
+		String inputedPassword = clientDto.getPassword();
+		
+		// Initialisation d'un client pour éviter le crash de l'app si pas de
+				// correspondance entre l'adresse entrée et la db
+		Client client = new Client();
+		client.setEmail(inputedEmail);
+		client.setPassword(inputedPassword);
+		
+		if (userRepo.findAllEmail().contains(inputedEmail)) {
+			
+			System.out.println("c'est bon bon");
+		}
+		else {
+			System.out.println("C'est pas bon bon");
+		}
+
+		//	System.out.println(clientDto);
+		//System.out.println(clientDto.getPassword());
+		//System.out.println(clientDto.getEmail());
+		// client = modelMapper.map(repo.findByEmail(clientDto.getEmail()),
+		// ClientDto.class);
+
+		// Client clientDB = repo.findByEmail(client.getEmail());
+		// String storedEmail = clientDB.getEmail();
+		// String storedPassword = clientDB.getPassword();
+		return new ResponseEntity<String>("Vous êtes connecté", HttpStatus.CREATED);
+
+		// return new ResponseEntity<String>("Fail", HttpStatus.NOT_FOUND);
 	}
 
 }
