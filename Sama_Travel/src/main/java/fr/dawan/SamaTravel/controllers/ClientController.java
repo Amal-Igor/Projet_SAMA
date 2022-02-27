@@ -55,11 +55,19 @@ public class ClientController {
 		//Réupération des inputs côté client pour effectuer la comapraison avec les infos compris dans la DB(donc repo)
 		String inputedEmail = clientDto.getEmail();
 		String inputedPassword = clientDto.getPassword();
+		
+		
+		
 		if(repo.findByEmail(inputedEmail) != null) {
 			return new ResponseEntity<String>("Vous êtes connecté", HttpStatus.CREATED);
 		}else {
 			return  new ResponseEntity<String>("Fail", HttpStatus.NOT_FOUND);
 		}
+		
+		
+		
+		
+		
 		// Initialisation d'un client pour éviter le crash de l'app si pas de
 				// correspondance entre l'adresse entrée et la db
 		//Client client = new Client();
