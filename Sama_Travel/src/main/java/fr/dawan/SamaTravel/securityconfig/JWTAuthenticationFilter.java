@@ -40,7 +40,6 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 			throws AuthenticationException {
 
 		AppUser appUser = null;
-
 		try {
 
 			// TODO voir comment utiliser un DTO ici
@@ -55,7 +54,9 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 	@Override
 	protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain,
 			Authentication authResult) throws IOException, ServletException {
-
+		
+		
+		//TODO Pourquoi le cast??
 		User springUser = (User) authResult.getPrincipal();
 
 		String jwt = Jwts.builder().setSubject(springUser.getUsername())

@@ -9,15 +9,18 @@ import fr.dawan.SamaTravel.dto.LoginDto;
 import fr.dawan.SamaTravel.entities.AppUser;
 import fr.dawan.SamaTravel.service.IUserService;
 
-@RestController
+@Controller
 public class UserController {
 	
 	@Autowired
 	IUserService userService;
 	
+	//TODO Implementer ResponseEntity pour éviter de throw exception quand user already exist
 	@PostMapping("/register")
 	public AppUser registerUser(@RequestBody LoginDto loginDto) {
 		
+		
+		//TODO Utiliser WildCard pour envoyé soit string soit AppUser
 		AppUser user = userService.findUserByUserName(loginDto.getUsername());
 		if(user != null) throw new RuntimeException("This user already exists");
 		
@@ -33,6 +36,12 @@ public class UserController {
 		
 		return appUser;
 	}
+	
+	
+	//TODO Verifier le login
+	//@PostMapping("/login")
+	
+	
 	
 
 }

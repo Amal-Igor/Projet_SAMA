@@ -7,4 +7,5 @@ import fr.dawan.SamaTravel.entities.AppUser;
 public interface IUserRepository extends JpaRepository<AppUser, Integer> {
 	
 	public AppUser findByUsername(String username);
+	
 	}

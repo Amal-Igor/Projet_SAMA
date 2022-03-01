@@ -11,13 +11,23 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+
+//TODO Vérifier si on crée la classe AppUser en surcouche d'une classeUser????
 
 @Entity
 public class AppUser {
+	
+	@Autowired
+	UserRole userRole; 
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,8 +47,9 @@ public class AppUser {
 	private List<Reservation> reservations;
 	
 	
-	@ManyToMany(fetch= FetchType.EAGER)
-	private Collection<UserRole> roles = new ArrayList();
+	@ManyToMany(fetch=FetchType.EAGER)
+	@JoinColumn(name="roleName")
+	private Collection<UserRole> roles ;
 	
 
 	public AppUser() {
@@ -46,14 +57,14 @@ public class AppUser {
 		reservations = new ArrayList<Reservation>();
 	}
 
-	public AppUser(String nom, String prenom, String username, String email, String password, Collection<UserRole> roles) {
+	public AppUser(String nom, String prenom, String username, String email, String password) {
 		super();
 		this.nom = nom;
 		this.prenom = prenom;
 		this.email = email;
 		this.username = username;
 		this.password = password;
-		this.roles = roles;
+		roles = new ArrayList<>();
 		reservations = new ArrayList<Reservation>();
 	}
 

@@ -21,7 +21,7 @@ import fr.dawan.SamaTravel.service.ClientService;
 
 //TODO: Ajouter le cas ou un user est mal inséré
 
-@RestController
+//@RestController
 public class ClientController {
 
 	@Autowired
