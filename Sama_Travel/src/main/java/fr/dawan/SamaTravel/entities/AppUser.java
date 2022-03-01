@@ -26,16 +26,19 @@ import org.springframework.stereotype.Component;
 @Entity
 public class AppUser {
 	
-	@Autowired
-	UserRole userRole; 
+	
+//	//TODO Enlever le pete couille
+//	@Autowired
+//	UserRole userRole; 
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	
 	private String nom;  
 	private String prenom;
 	
-	@Column(unique=true) 
+	@Column
 	private String email;
 	
 	@Column(unique=true)
@@ -135,7 +138,7 @@ public class AppUser {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", email=" + email + ", username=" + username
-				+ ", password=" + password + ", reservations=" + reservations + ", roles=" + roles + "]";
+				+ ", password=" + password + ", reservations=" + reservations + ", r]";
 	}
 	
 

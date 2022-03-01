@@ -16,28 +16,32 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 
 import fr.dawan.SamaTravel.entities.BeanConfiguration;
-import fr.dawan.SamaTravel.entities.Client;
+import fr.dawan.SamaTravel.repositories.AppUserRepository;
+import fr.dawan.SamaTravel.service.AppUserService;
 import fr.dawan.SamaTravel.service.IUserService;
 import fr.dawan.SamaTravel.entities.AppUser;
 
 @SpringBootApplication
 public class SamaTravelApplication {
 	
+
+	
 	@Bean
 	public ModelMapper modelMapper() {
 	return new ModelMapper();
+	
 }
-	@Bean 
-	public BCryptPasswordEncoder getBCPE() {
-		return new BCryptPasswordEncoder();
-	}
+//	@Bean 
+//	public BCryptPasswordEncoder getBCPE() {
+//		return new BCryptPasswordEncoder();
+//	}
 
 
 	public static void main(String[] args) {
 		SpringApplication.run(SamaTravelApplication.class, args); 
+
 		
-		
-		
+	
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(BeanConfiguration.class);
 		context.close();
 		

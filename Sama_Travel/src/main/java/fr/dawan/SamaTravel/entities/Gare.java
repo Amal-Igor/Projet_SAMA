@@ -30,7 +30,7 @@ public class Gare {
 	
 	public Gare() {
 		super();
-		trajets = new ArrayList<Trajet>();
+		//trajets = new ArrayList<Trajet>();
 	}
 
 	public Gare(String ville, String regionAdmin,String stopArea ) {
@@ -38,7 +38,7 @@ public class Gare {
 		this.ville = ville;
 		this.regionAdmin = regionAdmin;
 		this.stopArea = stopArea;
-		trajets = new ArrayList<Trajet>();
+		//trajets = new ArrayList<Trajet>();
 	}
 
 	public int getId() {
