@@ -16,7 +16,7 @@ public class AppUserServiceImpl implements IAppUserService {
 	AppUserRepository appUserRepository;
 	
 	@Override
-	public AppUser findUserByUsername(String username) {
+	public AppUser findByUsername(String username) {
 
 		return appUserRepository.findByUsername(username);
 	}

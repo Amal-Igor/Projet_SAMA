@@ -12,7 +12,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import fr.dawan.SamaTravel.entities.AppUser;
-import fr.dawan.SamaTravel.repositories.AppUserRepository;
 
 @Service
 @Transactional
@@ -26,7 +25,11 @@ public class AppUserDetailsService implements UserDetailsService{
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 	
 	 //return new User(user.getUsername(), user.getPassword(), new ArrayList<>()); //Granted authority
-	AppUser user =	userService.findUserByUsername(username);
+	AppUser user =	userService.findByUsername(username);
+	if(user == null) {
+		System.out.println("User Null -- AppUserDetails Impl");
+	}
+	
 	
 	//System.out.println(user);
 	

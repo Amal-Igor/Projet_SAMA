@@ -9,12 +9,17 @@ import javax.persistence.Enumerated;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
+import org.hibernate.annotations.DiscriminatorOptions;
+
+
+
 //TODO Vérifier si on crée la classe AppUser en surcouche d'une classeUser????
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "type_utilisateur", discriminatorType = DiscriminatorType.STRING, length = 30)
-public abstract class AppUser extends DbObject {
+@DiscriminatorOptions(force = true)
+public class AppUser extends DbObject {
 
 	private String nom;
 	private String prenom;

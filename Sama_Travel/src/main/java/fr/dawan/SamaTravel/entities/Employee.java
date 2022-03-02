@@ -3,8 +3,6 @@ package fr.dawan.SamaTravel.entities;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
-import org.springframework.stereotype.Component;
-
 @Entity
 @DiscriminatorValue("employe")
 public class Employee extends AppUser {
