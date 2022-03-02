@@ -1,27 +1,17 @@
 package fr.dawan.SamaTravel.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.dawan.SamaTravel.entities.AppUser;
 import fr.dawan.SamaTravel.models.AuthenticationRequest;
-import fr.dawan.SamaTravel.models.AuthenticationResponse;
-import fr.dawan.SamaTravel.service.IUserService;
-import fr.dawan.SamaTravel.service.AppUserDetailsService;
-import fr.dawan.SamaTravel.utils.JwtUtil;
+import fr.dawan.SamaTravel.service.IAppUserService;
 
 @RestController
 public class UserController {
@@ -51,15 +41,11 @@ public class UserController {
 //		return appUser;
 //	}
 	
-	
-	//TODO Verifier le login
-	//@PostMapping("/login")
-	
+
+	//TODO Quel Service
 	@Autowired
-	AppUserDetailsService userDetailsService;
+	IAppUserService userService;
 	
-	@Autowired
-	JwtUtil jwtTokenUtil;
 	
 	@Autowired
 	private AuthenticationManager authManager;
@@ -69,11 +55,7 @@ public class UserController {
 		return "Hello World";
 	}
 	
-	
-	@GetMapping( "/test1")
-	public String zeubi() {
-		return "Hello test1";
-	}
+
 	
 	
 	/*
@@ -84,23 +66,19 @@ public class UserController {
 	 */
 		@PostMapping("/login")
 		public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthenticationRequest authRequest) throws Exception{
-		try {
 			
-			//TODO: getUsername?? getEmail??
-			authManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword()));
+			AppUser user = userService.findUserByUsername(authRequest.getUsername());
 			
-		} catch (BadCredentialsException e) {
-			// TODO Auto-generated catch block
-			throw new Exception("Incorrect username/password", e);
-		}
-		//On appelle ce service en cas de succès => renvoit le Jwt qu'on construit grace au JWT util
-		final UserDetails userDetails = userDetailsService
-				.loadUserByUsername(authRequest.getUsername());
-		
-		//Ensuite on va injecter le jwt tool de JwtUtil
-		final String jwt = jwtTokenUtil.generateToken(userDetails);
-		return ResponseEntity.ok(new AuthenticationResponse(jwt)); //On génère le token via la classe jwtUtil puis on utilse la classe AuthResponse avec le jwt
+			if(user == null) {
+				return new ResponseEntity<String>("Nous ne trouvons pas l'User dans la BDD", HttpStatus.NOT_FOUND);
+			}
+			
+			return new ResponseEntity<String>("Vous êtes connecté", HttpStatus.OK);
+			
+			
 	}
+		
+		
 		
 		
 	

@@ -1,30 +1,31 @@
 package fr.dawan.SamaTravel.entities;
 
 import java.sql.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-
-import org.springframework.stereotype.Component;
-
+import javax.persistence.OneToMany;
 
 @Entity
-public class Client extends AppUser{
-	
+@DiscriminatorValue("client")
+public class Client extends AppUser {
+
 	private Date dateNaissance;
-	private String adresse;
-	private String telephone;  
+	private String adressePostale;
+	private String telephone;
 	private int pointsMiles;
-	
+
+	@OneToMany(mappedBy = "users", cascade = CascadeType.ALL)
+	private List<Reservation> reservations;
+
 	public Client() {
 		super();
 	}
-	
-	public Client(Date dateNaissance, String adresse, String telephone, int pointsMiles) {
-		super();
-		this.dateNaissance = dateNaissance;
-		this.adresse = adresse;
-		this.telephone = telephone;
-		this.pointsMiles = pointsMiles;
+
+	public Client(String nom, String prenom, String email, String username, String password, TypeUser typeUser) {
+		super(nom, prenom, email, username, password, typeUser);
 	}
 
 	public Date getDateNaissance() {
@@ -35,12 +36,12 @@ public class Client extends AppUser{
 		this.dateNaissance = dateNaissance;
 	}
 
-	public String getAdresse() {
-		return adresse;
+	public String getAdressePostale() {
+		return adressePostale;
 	}
 
-	public void setAdresse(String adresse) {
-		this.adresse = adresse;
+	public void setAdressePostale(String adressePostale) {
+		this.adressePostale = adressePostale;
 	}
 
 	public String getTelephone() {
@@ -59,11 +60,12 @@ public class Client extends AppUser{
 		this.pointsMiles = pointsMiles;
 	}
 
-	@Override
-	public String toString() {
-		return "Client [dateNaissance=" + dateNaissance + ", adresse=" + adresse + ", telephone=" + telephone
-				+ ", pointsMiles=" + pointsMiles + "]";
+	public List<Reservation> getReservations() {
+		return reservations;
 	}
 
+	public void setReservations(List<Reservation> reservations) {
+		this.reservations = reservations;
+	}
 
 }

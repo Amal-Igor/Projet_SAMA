@@ -8,10 +8,10 @@ import fr.dawan.SamaTravel.repositories.AppUserRepository;
 
 
 @Service
-public class AppUserServiceImpl implements AppUserService {
+public class AppUserServiceImpl implements IAppUserService {
 	
 	
-	//TODO Là qu'on a besoin du repo?
+
 	@Autowired
 	AppUserRepository appUserRepository;
 	

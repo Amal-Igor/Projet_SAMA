@@ -6,19 +6,17 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
-import fr.dawan.SamaTravel.service.AppUserService;
-import fr.dawan.SamaTravel.service.AppUserDetailsService;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 
-
+@Configuration
 @EnableWebSecurity
 public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 	
@@ -26,8 +24,6 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 //	public BCryptPasswordEncoder getBCPE() {
 //		return new BCryptPasswordEncoder();
 //	}
-	
-
 
 	@Bean
 	public PasswordEncoder passwordEncoder() {
@@ -41,20 +37,35 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 	}
 
 	//TODO: 2 - implementer la classe User
+//	@Autowired
+//	private AppUserDetailsService myUserDetailsService;
+//	
 	@Autowired
-	private AppUserDetailsService myUserDetailsService;
+	private UserDetailsService myUserDetailsService;
 	
+	//TODO Rédfinir : une qui prend en parametre AuthBuilder
 	
 	@Autowired
-	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+	public void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(myUserDetailsService);
 	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
+		
+		// On desactive les sessions
+		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+		
+
 		http.csrf().disable()
-		.authorizeRequests().antMatchers("/login").permitAll() //Ici on peut ajouter les routes sur lesquels aucune authentification n'est due
-		.anyRequest().authenticated();
+		.authorizeRequests().antMatchers("/login").permitAll(); //Ici on peut ajouter les routes sur lesquels aucune authentification n'est due
+		
+		http.authorizeRequests().anyRequest().authenticated();
+		
+		http.addFilter(new JWTAuthenticationFilter(authenticationManager()));
+		
+		http.addFilterBefore(new JWTAuthorisationFilter(), UsernamePasswordAuthenticationFilter.class);
+		
 	}
 
 

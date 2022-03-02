@@ -18,11 +18,9 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Entity
-public class Reservation {
+public class Reservation extends DbObject{
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+
 	private int prix;
 	
 	@ManyToMany(targetEntity = Trajet.class, cascade = CascadeType.ALL)
@@ -44,13 +42,7 @@ public class Reservation {
 		users = new ArrayList<Client>();
 	}
 
-	public int getId() {
-		return id;
-	}
- 
-	public void setId(int id) { 
-		this.id = id; 
-	}
+
 
 	public int getPrix() {
 		return prix;
@@ -80,7 +72,7 @@ public class Reservation {
 
 	@Override
 	public String toString() {
-		return "Reservation [id=" + id + ", prix=" + prix + ", trajets=" + trajets + ", user=" + users + "]";
+		return "Reservation[ prix=" + prix + ", trajets=" + trajets + ", user=" + users + "]";
 	}
 
 }

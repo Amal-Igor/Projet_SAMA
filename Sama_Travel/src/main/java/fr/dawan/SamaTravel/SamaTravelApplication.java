@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 import fr.dawan.SamaTravel.entities.BeanConfiguration;
 import fr.dawan.SamaTravel.repositories.AppUserRepository;
-import fr.dawan.SamaTravel.service.AppUserService;
+import fr.dawan.SamaTravel.service.IAppUserService;
 import fr.dawan.SamaTravel.service.IUserService;
 import fr.dawan.SamaTravel.entities.AppUser;
 

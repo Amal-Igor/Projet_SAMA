@@ -1,18 +1,22 @@
 package fr.dawan.SamaTravel.entities;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
 import org.springframework.stereotype.Component;
 
-@Component
-public class Employee extends AppUser{ 
-	
+@Entity
+@DiscriminatorValue("employe")
+public class Employee extends AppUser {
+
 	private String poste;
 
 	public Employee() {
-		super();
 	}
 
-	public Employee(String poste) {
-		super();
+	public Employee(String nom, String prenom, String email, String username, String password, TypeUser typeUser,
+			String poste) {
+		super(nom, prenom, email, username, password, typeUser);
 		this.poste = poste;
 	}
 

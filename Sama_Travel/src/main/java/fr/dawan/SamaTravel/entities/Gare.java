@@ -16,11 +16,9 @@ import org.springframework.stereotype.Component;
 @Component
 @Entity
 @Table(name = "gares")
-public class Gare {
+public class Gare extends DbObject{
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+
 	private String ville;
 	private String regionAdmin;
 	private String stopArea;
@@ -41,13 +39,7 @@ public class Gare {
 		//trajets = new ArrayList<Trajet>();
 	}
 
-	public int getId() {
-		return id;
-	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
 
 	public String getVille() {
 		return ville;
@@ -87,7 +79,7 @@ public class Gare {
 
 	@Override
 	public String toString() {
-		return "Gare [id=" + id + ", ville=" + ville + ", regionAdmin=" + regionAdmin + ", stopArea=" + stopArea
+		return "Gare  ville=" + ville + ", regionAdmin=" + regionAdmin + ", stopArea=" + stopArea
 				+ ", trajets=" + trajets + "]";
 	}
 

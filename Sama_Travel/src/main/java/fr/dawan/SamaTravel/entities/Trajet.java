@@ -15,11 +15,9 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Entity
-public class Trajet {
+public class Trajet extends DbObject{
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+
 	private String gareDepart;
 	private String gareArrivee;
 	private Date heureDepart;
@@ -47,13 +45,6 @@ public class Trajet {
 		reservations = new ArrayList<Reservation>();
 	}
 
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
 
 	public String getGareDepart() {
 		return gareDepart;
@@ -105,7 +96,7 @@ public class Trajet {
 
 	@Override
 	public String toString() {
-		return "Trajet [id=" + id + ", gareDepart=" + gareDepart + ", gareArrivee=" + gareArrivee + ", heureDepart="
+		return "Trajet [ gareDepart=" + gareDepart + ", gareArrivee=" + gareArrivee + ", heureDepart="
 				+ heureDepart + ", heureArrivee=" + heureArrivee + ", placesReservees=" + ", placesDisponibles="
 				+ ", gares=" + gares + ", reservations=" + reservations + "]";
 	}

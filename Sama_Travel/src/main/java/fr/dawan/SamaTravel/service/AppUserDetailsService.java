@@ -19,7 +19,7 @@ import fr.dawan.SamaTravel.repositories.AppUserRepository;
 public class AppUserDetailsService implements UserDetailsService{
 
 	@Autowired
-	private AppUserService userService;
+	private IAppUserService userService;
 	
 	
 	@Override
@@ -35,4 +35,4 @@ public class AppUserDetailsService implements UserDetailsService{
 	}
 	
 }
-	
+		
