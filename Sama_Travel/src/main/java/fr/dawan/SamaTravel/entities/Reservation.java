@@ -1,78 +1,45 @@
 package fr.dawan.SamaTravel.entities;
 
-import fr.dawan.SamaTravel.entities.Client;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
-import org.springframework.stereotype.Component;
-
-
-@Component
 @Entity
-public class Reservation extends DbObject{
-	
+public class Reservation extends DbObject {
 
-	private int prix;
-	
-	@ManyToMany(targetEntity = Trajet.class, cascade = CascadeType.ALL)
-	private List<Trajet> trajets;
-	
-	@ManyToOne(targetEntity = Client.class, cascade = CascadeType.ALL)
-	private List<Client> users;
-	
-	public Reservation() {
-		super();
-		trajets = new ArrayList<Trajet>();
-		users = new ArrayList<Client>();
-	}
+    private int prix;
 
-	public Reservation(int prix) {
-		super();
-		this.prix = prix;
-		trajets = new ArrayList<Trajet>();
-		users = new ArrayList<Client>();
-	}
+    @ManyToOne(targetEntity = AppUser.class, cascade = CascadeType.ALL)
+    private AppUser users;
 
+    public Reservation() {
+        super();
+    }
 
+    public Reservation(int prix) {
+        super();
+        this.prix = prix;
+    }
 
-	public int getPrix() {
-		return prix;
-	}
+    public int getPrix() {
+        return prix;
+    }
 
-	public void setPrix(int prix) {
-		this.prix = prix;
-	}
+    public void setPrix(int prix) {
+        this.prix = prix;
+    }
 
-	public List<Trajet> getTrajets() {
-		return trajets;
-	}
+    public AppUser getUsers() {
+        return users;
+    }
 
-	public void setTrajets(List<Trajet> trajets) {
-		this.trajets = trajets;
-	}
+    public void setUsers(AppUser users) {
+        this.users = users;
+    }
 
-
-
-	public List<Client> getUsers() {
-		return users;
-	}
-
-	public void setUsers(List<Client> users) {
-		this.users = users;
-	}
-
-	@Override
-	public String toString() {
-		return "Reservation[ prix=" + prix + ", trajets=" + trajets + ", user=" + users + "]";
-	}
+    @Override
+    public String toString() {
+        return "Reservation[ prix=" + prix + ", user=" + users + "]";
+    }
 
 }

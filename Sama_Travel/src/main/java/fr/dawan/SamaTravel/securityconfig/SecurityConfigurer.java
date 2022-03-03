@@ -4,6 +4,7 @@ package fr.dawan.SamaTravel.securityconfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -57,8 +58,23 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 		
 		http.csrf().disable()
-		.authorizeRequests().antMatchers("/signin/**", "/signup/**").permitAll(); //Ici on peut ajouter les routes sur lesquels aucune authentification n'est due
+		.authorizeRequests().antMatchers("/login/**").permitAll(); //Ici on peut ajouter les routes sur lesquels aucune authentification n'est due
 		
+		/*
+         * Ici, si une requête est envoyée avec post vers /tasks
+         * Il faut l'autoriser que si l'utilisateur a le rôle ADMIN
+         */
+
+        http.authorizeRequests().antMatchers(HttpMethod.GET, "/reservation/**").hasAuthority("ADMIN");
+        http.authorizeRequests().antMatchers(HttpMethod.POST, "/reservation/**").hasAuthority("ADMIN");
+        http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/reservation/**").hasAuthority("ADMIN");
+        
+        http.authorizeRequests().antMatchers(HttpMethod.GET, "/reservation/{\\d+}").hasAuthority("CLIENT");
+        
+        http.authorizeRequests().antMatchers(HttpMethod.GET, "/reservation/**").hasAuthority("EMPLOYE");
+        http.authorizeRequests().antMatchers(HttpMethod.POST, "/reservation/**").hasAuthority("EMPLOYE");
+		
+        
 		http.authorizeRequests().anyRequest().authenticated();
 		
 		http.addFilter(new JWTAuthenticationFilter(authenticationManager()));

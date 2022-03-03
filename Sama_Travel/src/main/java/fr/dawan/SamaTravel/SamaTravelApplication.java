@@ -10,32 +10,23 @@ import fr.dawan.SamaTravel.entities.BeanConfiguration;
 
 @SpringBootApplication
 public class SamaTravelApplication {
-	
-	
-	
-	
-	@Bean
-	public ModelMapper modelMapper() {
-	return new ModelMapper();
-	
-}
+
+    @Bean
+    public ModelMapper modelMapper() {
+        return new ModelMapper();
+
+    }
 //	@Bean 
 //	public BCryptPasswordEncoder getBCPE() {
 //		return new BCryptPasswordEncoder();
 //	}
 
+    public static void main(String[] args) {
+        SpringApplication.run(SamaTravelApplication.class, args);
 
-	public static void main(String[] args) {
-		SpringApplication.run(SamaTravelApplication.class, args); 
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(BeanConfiguration.class);
+        context.close();
 
-	
-		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(BeanConfiguration.class);
-		context.close();
-		
-
-
-		
-		
-	}
+    }
 
 }

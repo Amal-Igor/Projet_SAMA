@@ -13,92 +13,89 @@ import javax.persistence.ManyToMany;
 
 import org.springframework.stereotype.Component;
 
-@Component
 @Entity
-public class Trajet extends DbObject{
+public class Trajet extends DbObject {
 
+    private String gareDepart;
+    private String gareArrivee;
+    private Date heureDepart;
+    private Date heureArrivee;
 
-	private String gareDepart;
-	private String gareArrivee;
-	private Date heureDepart;
-	private Date heureArrivee;
+    @ManyToMany(mappedBy = "trajets", cascade = CascadeType.ALL)
+    private List<Gare> gares;
 
-	@ManyToMany(mappedBy = "trajets", cascade = CascadeType.ALL)
-	private List<Gare> gares;
+    @ManyToMany(mappedBy = "trajets", cascade = CascadeType.ALL)
+    private List<Reservation> reservations;
 
-	@ManyToMany(mappedBy = "trajets", cascade = CascadeType.ALL)
-	private List<Reservation> reservations;
+    public Trajet() {
+        super();
+        gares = new ArrayList<Gare>();
+        reservations = new ArrayList<Reservation>();
+    }
 
-	public Trajet() {
-		super();
-		gares = new ArrayList<Gare>();
-		reservations = new ArrayList<Reservation>();
-	}
+    public Trajet(String gareDepart, String gareArrivee, Date heureDepart, Date heureArrivee) {
+        super();
+        this.gareDepart = gareDepart;
+        this.gareArrivee = gareArrivee;
+        this.heureDepart = heureDepart;
+        this.heureArrivee = heureArrivee;
+        gares = new ArrayList<Gare>();
+        reservations = new ArrayList<Reservation>();
+    }
 
-	public Trajet(String gareDepart, String gareArrivee, Date heureDepart, Date heureArrivee) {
-		super();
-		this.gareDepart = gareDepart;
-		this.gareArrivee = gareArrivee;
-		this.heureDepart = heureDepart;
-		this.heureArrivee = heureArrivee;
-		gares = new ArrayList<Gare>();
-		reservations = new ArrayList<Reservation>();
-	}
+    public String getGareDepart() {
+        return gareDepart;
+    }
 
+    public void setGareDepart(String gareDepart) {
+        this.gareDepart = gareDepart;
+    }
 
-	public String getGareDepart() {
-		return gareDepart;
-	}
+    public String getGareArrivee() {
+        return gareArrivee;
+    }
 
-	public void setGareDepart(String gareDepart) {
-		this.gareDepart = gareDepart;
-	}
+    public void setGareArrivee(String gareArrivee) {
+        this.gareArrivee = gareArrivee;
+    }
 
-	public String getGareArrivee() {
-		return gareArrivee;
-	}
+    public Date getHeureDepart() {
+        return heureDepart;
+    }
 
-	public void setGareArrivee(String gareArrivee) {
-		this.gareArrivee = gareArrivee;
-	}
+    public void setHeureDepart(Date heureDepart) {
+        this.heureDepart = heureDepart;
+    }
 
-	public Date getHeureDepart() {
-		return heureDepart;
-	}
+    public Date getHeureArrivee() {
+        return heureArrivee;
+    }
 
-	public void setHeureDepart(Date heureDepart) {
-		this.heureDepart = heureDepart;
-	}
+    public void setHeureArrivee(Date heureArrivee) {
+        this.heureArrivee = heureArrivee;
+    }
 
-	public Date getHeureArrivee() {
-		return heureArrivee;
-	}
+    public List<Gare> getGares() {
+        return gares;
+    }
 
-	public void setHeureArrivee(Date heureArrivee) {
-		this.heureArrivee = heureArrivee;
-	}
+    public void setGares(List<Gare> gares) {
+        this.gares = gares;
+    }
 
-	public List<Gare> getGares() {
-		return gares;
-	}
+    public List<Reservation> getReservations() {
+        return reservations;
+    }
 
-	public void setGares(List<Gare> gares) {
-		this.gares = gares;
-	}
+    public void setReservations(List<Reservation> reservations) {
+        this.reservations = reservations;
+    }
 
-	public List<Reservation> getReservations() {
-		return reservations;
-	}
-
-	public void setReservations(List<Reservation> reservations) {
-		this.reservations = reservations;
-	}
-
-	@Override
-	public String toString() {
-		return "Trajet [ gareDepart=" + gareDepart + ", gareArrivee=" + gareArrivee + ", heureDepart="
-				+ heureDepart + ", heureArrivee=" + heureArrivee + ", placesReservees=" + ", placesDisponibles="
-				+ ", gares=" + gares + ", reservations=" + reservations + "]";
-	}
+    @Override
+    public String toString() {
+        return "Trajet [ gareDepart=" + gareDepart + ", gareArrivee=" + gareArrivee + ", heureDepart=" + heureDepart
+                + ", heureArrivee=" + heureArrivee + ", placesReservees=" + ", placesDisponibles=" + ", gares=" + gares
+                + ", reservations=" + reservations + "]";
+    }
 
 }

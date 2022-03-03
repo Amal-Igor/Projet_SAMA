@@ -1,5 +1,8 @@
 package fr.dawan.SamaTravel.entities;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
@@ -8,12 +11,10 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.DiscriminatorOptions;
 
-
-
-//TODO Vérifier si on crée la classe AppUser en surcouche d'une classeUser????
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -29,25 +30,20 @@ public class AppUser extends DbObject {
 
 	@Column(unique = true)
 	private String username;
-
+	
+	//@JsonIgnore
 	private String password;
 
 	@Enumerated(EnumType.STRING)
 	private TypeUser typeUser;
 
-//	@OneToMany(mappedBy = "users", cascade = CascadeType.ALL)
-//	private List<Reservation> reservations;
-//	
-//	
-//	@ManyToMany(fetch=FetchType.EAGER)
-//	@JoinColumn(name="roleName")
-//	private Collection<UserRole> roles ;
+	@OneToMany(mappedBy = "app_user", cascade = CascadeType.ALL)
+	private List<Reservation> reservations;
 
-//TODO mettre dans client
-//	public AppUser() {
-//		super();
-//		reservations = new ArrayList<Reservation>();
-//	}
+    
+    //EAGER: A chaque fois je vais charger l'utilisateur; automatiquement je vais charger ses roles
+//    @ManyToMany(fetch=FetchType.EAGER)
+//    private Collection<TypeUser> roles = new ArrayList<>();
 
 	public AppUser() {
 		super();
