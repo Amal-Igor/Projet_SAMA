@@ -56,9 +56,8 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 		// On desactive les sessions
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 		
-
 		http.csrf().disable()
-		.authorizeRequests().antMatchers("/login").permitAll(); //Ici on peut ajouter les routes sur lesquels aucune authentification n'est due
+		.authorizeRequests().antMatchers("/signin/**", "/signup/**").permitAll(); //Ici on peut ajouter les routes sur lesquels aucune authentification n'est due
 		
 		http.authorizeRequests().anyRequest().authenticated();
 		
