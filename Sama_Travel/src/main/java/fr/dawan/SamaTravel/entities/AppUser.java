@@ -52,29 +52,20 @@ public class AppUser extends DbObject {
 	private List<Reservation> reservations;
 	
 	
-	@ManyToMany(fetch=FetchType.EAGER)
+	@ManyToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name="rolename")
-	private Collection<AppUserRole> roles ;
+	private Collection<AppUserRole> roles;
 
 
 	public AppUser() {
 		super();
 	}
 
-	
 
-	public AppUser(String nom, String prenom, String email, String username, String password, TypeUser typeUser,
-			Set<AppUserRole> roles, List<Reservation> reservations) {
-		super();
-		this.nom = nom;
-		this.prenom = prenom;
-		this.email = email;
-		this.username = username;
-		this.password = password;
-		this.typeUser = typeUser;
-		this.roles = roles;
-		this.reservations = reservations;
-	}
+
+
+
+
 
 
 
@@ -85,6 +76,7 @@ public class AppUser extends DbObject {
 		this.email = email;
 		this.username = username;
 		this.password = password;
+		this.roles = new ArrayList<>();
 		this.typeUser = TypeUser.CLIENT;
 	}
 
@@ -131,15 +123,30 @@ public class AppUser extends DbObject {
 	}
 
 
+
+
+
 	public Collection<AppUserRole> getRoles() {
 		return roles;
 	}
 
 
 
+
+
+
+
+
+
 	public void setRoles(Collection<AppUserRole> roles) {
 		this.roles = roles;
 	}
+
+
+
+
+
+
 
 
 

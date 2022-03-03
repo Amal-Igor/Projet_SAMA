@@ -40,16 +40,15 @@ public class AppUserServiceImpl implements IAppUserService {
 		appUser.setPassword(hashedPw);
 		AppUser user  = new AppUser();
 		
-		
-		AppUserRole role = roleRepository.findByName("CLIENT");
-		Set<AppUserRole> roleSet = new HashSet<>();
-        roleSet.add(role);
-//		AppUserRole role = roleRepository.findByName("USER");
-//		Collection<AppUserRole> roleCollection= new ArrayList<>();
-//		roleCollection.add(role);
-//		
-//		user.setRoles(roleCollection);
-		appUser.setRoles(roleSet);
+//		AppUserRole role = new AppUserRole("CLIENT");
+//		Collection<AppUserRole> roleSet = new HashSet<>();
+//        roleSet.add(role);
+		AppUserRole role = new AppUserRole();
+		Collection<AppUserRole> roleCollection= new ArrayList<>();
+		roleCollection.add(role);
+////		
+////		user.setRoles(roleCollection);
+//		appUser.setRoles(roleSet);
         
         
 		appUserRepository.save(appUser);
@@ -57,10 +56,10 @@ public class AppUserServiceImpl implements IAppUserService {
 		
 	}
 
-//	@Override
-//	public AppUserRole saveRole(AppUserRole role) {
-//		return roleRepository.save(role);
-//	}
+	@Override
+	public AppUserRole saveRole(AppUserRole role) {
+		return roleRepository.save(role);
+	}
 
 //	@Override
 //	public void addRoleToUser(String username, String roleName) {
@@ -71,19 +70,26 @@ public class AppUserServiceImpl implements IAppUserService {
 
 
 	@Override
-	public void addRoleToUser(String username, String roleName) {
+	public void addRoleToUser(String username, String rolename) {
 		//On recupère le rôle, et l'utilisateur
-				AppUserRole role = roleRepository.findByName(roleName);
-				AppUser user = appUserRepository.findByUsername(username);
+
+				AppUserRole role = new AppUserRole(rolename);	
+				roleRepository.save(role);
 				
-				/*
-				 * On accède à la liste des role de l'utilisateur afin de lui ajouter 
-				 * le role.
-				 * Comme la methode est transactionnel: 
-				 * Dès qu'il fait commit; automatiquement il sait qu'on ajouté un rôle 
-				 * et automatiquement il l'ajoute au niveau de la base de données
-				 */
-				user.getRoles().add(role);		
+				AppUser user = appUserRepository.findByUsername(username);
+
+				
+//				/*
+//				 * On accède à la liste des role de l'utilisateur afin de lui ajouter 
+//				 * le role.
+//				 * Comme la methode est transactionnel: 
+//				 * Dès qu'il fait commit; automatiquement il sait qu'on ajouté un rôle 
+//				 * et automatiquement il l'ajoute au niveau de la base de données
+//				 */
+				System.out.println(user);
+				user.getRoles();
+				
+				
 	}
 
 }

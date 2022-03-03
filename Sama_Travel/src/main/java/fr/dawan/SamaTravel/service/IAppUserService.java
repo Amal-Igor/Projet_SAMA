@@ -1,8 +1,7 @@
 package fr.dawan.SamaTravel.service;
 
-import org.springframework.stereotype.Service;
-
 import fr.dawan.SamaTravel.entities.AppUser;
+import fr.dawan.SamaTravel.entities.AppUserRole;
 
 public interface IAppUserService {
 	
@@ -18,6 +17,8 @@ public interface IAppUserService {
 //		
 		//Methode permettant d'ajouter un rôle à un utilisateur
 	public void addRoleToUser(String username, String roleName);
+
+	AppUserRole saveRole(AppUserRole role);
 	
 	
 }

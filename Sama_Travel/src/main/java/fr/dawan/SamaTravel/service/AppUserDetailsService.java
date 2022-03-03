@@ -2,8 +2,6 @@ package fr.dawan.SamaTravel.service;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.transaction.Transactional;
 
@@ -40,9 +38,9 @@ public class AppUserDetailsService implements UserDetailsService {
 		
 
 		Collection<GrantedAuthority> authorities = new ArrayList<>();
-		user.getRoles().forEach(r -> {
-			authorities.add(new SimpleGrantedAuthority(r.getName()));
-		});
+//		user.getRoles().forEach(r -> {
+//			authorities.add(new SimpleGrantedAuthority(r.getName()));
+//		});
 		return new User(user.getUsername(), user.getPassword(), authorities);
 	}
 

@@ -9,20 +9,19 @@ public class SignupRequest {
 	private String email;
 	private String username;
 	private String password;
-	private TypeUser typeUser;
+
 
 	public SignupRequest() {
 		super();
 	}
 
-	public SignupRequest(String nom, String prenom, String email, String username, String password, TypeUser typeUser) {
+	public SignupRequest(String nom, String prenom, String email, String username, String password) {
 		super();
 		this.nom = nom;
 		this.prenom = prenom;
 		this.email = email;
 		this.username = username;
 		this.password = password;
-		this.typeUser = TypeUser.CLIENT;
 
 	}
 
@@ -66,13 +65,7 @@ public class SignupRequest {
 		this.password = password;
 	}
 
-	public TypeUser getTypeUser() {
-		return typeUser;
-	}
 
-	public void setTypeUser(TypeUser typeUser) {
-		this.typeUser = typeUser;
-	}
 	
 	
 	

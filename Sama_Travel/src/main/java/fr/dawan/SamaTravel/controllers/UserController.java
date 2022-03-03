@@ -91,7 +91,7 @@ public class UserController {
 //	                                   roles));
 //	  }
 
-	@PostMapping(value = "/signup", produces = "application/json")
+	@PostMapping(value = "/register", produces = "application/json")
 	public ResponseEntity<?> getById(@RequestBody SignupRequest signupRequest) {
 
 		// Verification si le user
