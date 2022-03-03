@@ -17,7 +17,7 @@ public class Client extends AppUser {
 	private String telephone;
 	private int pointsMiles;
 
-	@OneToMany(mappedBy = "users", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "app_user", cascade = CascadeType.ALL)
 	private List<Reservation> reservations;
 
 	public Client() {
