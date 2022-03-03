@@ -69,7 +69,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 				.signWith(SignatureAlgorithm.HS256, SecurityConstants.SECRET)
 				.claim("roles", springUser.getAuthorities()).compact();
 		
-		
+		System.out.println(springUser.getAuthorities() + "*****************************************");
 		// Renvoie le token
 		response.addHeader(SecurityConstants.HEADER_STRING, SecurityConstants.TOKEN_PREFIX + jwt);
 	}

@@ -13,7 +13,11 @@ public interface IAppUserService {
 
 	public void saveUser(AppUser appUser);
 	
-	//TODO Définir ajout user ///
+//	//Methode permettant d'ajouter un role dans notre Application
+//	public AppUserRole saveRole(AppUserRole role);
+//		
+		//Methode permettant d'ajouter un rôle à un utilisateur
+	public void addRoleToUser(String username, String roleName);
 	
 	
 }

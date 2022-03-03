@@ -1,13 +1,23 @@
 package fr.dawan.SamaTravel.entities;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.DiscriminatorOptions;
 
@@ -34,26 +44,41 @@ public class AppUser extends DbObject {
 
 	@Enumerated(EnumType.STRING)
 	private TypeUser typeUser;
+	
+//	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+//	private Set<AppUserRole> roles;
 
-//	@OneToMany(mappedBy = "users", cascade = CascadeType.ALL)
-//	private List<Reservation> reservations;
-//	
-//	
-//	@ManyToMany(fetch=FetchType.EAGER)
-//	@JoinColumn(name="roleName")
-//	private Collection<UserRole> roles ;
+	@OneToMany(mappedBy = "users", cascade = CascadeType.ALL)
+	private List<Reservation> reservations;
+	
+	
+	@ManyToMany(fetch=FetchType.EAGER)
+	@JoinColumn(name="rolename")
+	private Collection<AppUserRole> roles ;
 
-//TODO mettre dans client
-//	public AppUser() {
-//		super();
-//		reservations = new ArrayList<Reservation>();
-//	}
 
 	public AppUser() {
 		super();
 	}
 
-	public AppUser(String nom, String prenom, String email, String username, String password, TypeUser typeUser) {
+	
+
+	public AppUser(String nom, String prenom, String email, String username, String password, TypeUser typeUser,
+			Set<AppUserRole> roles, List<Reservation> reservations) {
+		super();
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+		this.username = username;
+		this.password = password;
+		this.typeUser = typeUser;
+		this.roles = roles;
+		this.reservations = reservations;
+	}
+
+
+
+	public AppUser(String nom, String prenom, String email, String username, String password, TypeUser typeUser, Collection<AppUserRole> roles) {
 		super();
 		this.nom = nom;
 		this.prenom = prenom;
@@ -62,6 +87,8 @@ public class AppUser extends DbObject {
 		this.password = password;
 		this.typeUser = TypeUser.CLIENT;
 	}
+
+
 
 	public String getNom() {
 		return nom;
@@ -103,10 +130,25 @@ public class AppUser extends DbObject {
 		this.username = username;
 	}
 
+
+	public Collection<AppUserRole> getRoles() {
+		return roles;
+	}
+
+
+
+	public void setRoles(Collection<AppUserRole> roles) {
+		this.roles = roles;
+	}
+
+
+
 	@Override
 	public String toString() {
-		return "User [ nom=" + nom + ", prenom=" + prenom + ", email=" + email + ", username=" + username
-				+ ", password=" + password + ", reservations]";
+		return "AppUser [nom=" + nom + ", prenom=" + prenom + ", email=" + email + ", username=" + username
+				+ ", password=" + password + ", typeUser=" + typeUser + ", roles= ";
 	}
+
+
 
 }
