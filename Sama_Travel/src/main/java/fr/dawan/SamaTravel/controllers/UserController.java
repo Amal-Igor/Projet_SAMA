@@ -74,7 +74,7 @@ public class UserController {
 
 
 		userService.saveUser(userToAdd);
-		return new ResponseEntity<String>("Utilisateur enregistré ", HttpStatus.OK);
+		return new ResponseEntity<AppUser>(userToAdd, HttpStatus.OK);
 	}
 
 }
