@@ -11,19 +11,23 @@ import fr.dawan.SamaTravel.repositories.AppUserRepository;
 @Service
 public class AppUserServiceImpl implements IAppUserService {
 	
-//	@Autowired
-//	BCryptPasswordEncoder bCryptPasswordEncoder;
+	@Autowired
+	BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	@Autowired
 	AppUserRepository appUserRepository;
 	
 	@Override
 	public AppUser findByUsername(String username) {
+		
 		return appUserRepository.findByUsername(username);
 	}
 
 	@Override
 	public void saveUser(AppUser appUser) {
+		
+		String hashedPw = bCryptPasswordEncoder.encode(appUser.getPassword());
+		appUser.setPassword(hashedPw);
 		appUserRepository.save(appUser);
 		
 	}

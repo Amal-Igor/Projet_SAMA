@@ -3,15 +3,12 @@ package fr.dawan.SamaTravel.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.dawan.SamaTravel.entities.AppUser;
-import fr.dawan.SamaTravel.entities.Client;
-import fr.dawan.SamaTravel.entities.TypeUser;
 import fr.dawan.SamaTravel.models.AuthenticationRequest;
 import fr.dawan.SamaTravel.models.SignupRequest;
 import fr.dawan.SamaTravel.service.IAppUserService;
@@ -21,6 +18,10 @@ public class UserController {
 
 	@Autowired
 	IAppUserService userService;
+	
+	
+	@Autowired
+	BCryptPasswordEncoder bcrypt;
 
 //	
 //	@Autowired
@@ -35,7 +36,9 @@ public class UserController {
 		if (user == null)
 			return new ResponseEntity<String>("Nous ne trouvons pas l'User dans la BDD", HttpStatus.NOT_FOUND);
 
-		else if ((authRequest.getPassword().equals(user.getPassword()))
+		
+		
+		else if ((bcrypt.matches(authRequest.getPassword(), user.getPassword()) == true)
 				&& (authRequest.getUsername().equals(user.getUsername()))) {
 			return new ResponseEntity<String>("Vous êtes connecté", HttpStatus.OK);
 		} else
