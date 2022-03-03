@@ -31,20 +31,15 @@ public class UserController {
 	public ResponseEntity<String> createAuthenticationToken(@RequestBody AuthenticationRequest authRequest)
 			throws Exception {
 		AppUser user = userService.findByUsername(authRequest.getUsername());
-		
-		String reqUsername = authRequest.getUsername();
-		String reqPassword = authRequest.getPassword();
-		String userUsername = user.getUsername();
-		String userPassword = user.getPassword();
 
-		if(user == null) return new ResponseEntity<String>("Nous ne trouvons pas l'User dans la BDD", HttpStatus.NOT_FOUND);
-		
+		if (user == null)
+			return new ResponseEntity<String>("Nous ne trouvons pas l'User dans la BDD", HttpStatus.NOT_FOUND);
 
-		else if(reqPassword == userPassword) {
-				 return new ResponseEntity<String>("Vous êtesconnecté", HttpStatus.OK);
-				 
-		} else return new ResponseEntity<String>("Mauvaise combinaison mdp/user", HttpStatus.NOT_FOUND);
-		
+		else if ((authRequest.getPassword().equals(user.getPassword()))
+				&& (authRequest.getUsername().equals(user.getUsername()))) {
+			return new ResponseEntity<String>("Vous êtes connecté", HttpStatus.OK);
+		} else
+			return new ResponseEntity<String>("Mauvaise combinaison mdp/user", HttpStatus.NOT_FOUND);
 	}
 
 //	@PostMapping("/signin")
@@ -66,12 +61,19 @@ public class UserController {
 
 	@PostMapping(value = "/signup", produces = "application/json")
 	public ResponseEntity<?> getById(@RequestBody SignupRequest signupRequest) {
-		AppUser user = new AppUser(signupRequest.getNom(), signupRequest.getPrenom(), signupRequest.getEmail(),
+		
+		//Verification si le user
+		AppUser user = userService.findByUsername(signupRequest.getUsername());
+		
+		if(user != null) {
+			return new ResponseEntity<String>("Utilisateur déjà présent dans la BDD", HttpStatus.UNAUTHORIZED);
+		}
+		
+		AppUser userToAdd = new AppUser(signupRequest.getNom(), signupRequest.getPrenom(), signupRequest.getEmail(),
 				signupRequest.getUsername(), signupRequest.getPassword(), signupRequest.getTypeUser());
 
-		// TODO Peaufiner le login - signup avec l'éventualité ou il existe déjà ce
-		// petit batar
-		userService.saveUser(user);
+
+		userService.saveUser(userToAdd);
 		return new ResponseEntity<String>("Utilisateur enregistré ", HttpStatus.OK);
 	}
 
