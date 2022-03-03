@@ -1,10 +1,6 @@
 package fr.dawan.SamaTravel.entities;
 
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -14,9 +10,6 @@ public class Gare extends DbObject {
     private String ville;
     private String regionAdmin;
     private String stopArea;
-
-    @ManyToMany(cascade = CascadeType.ALL)
-    private List<Trajet> trajets;
 
     public Gare() {
         super();
@@ -55,18 +48,9 @@ public class Gare extends DbObject {
         this.stopArea = stopArea;
     }
 
-    public List<Trajet> getTrajets() {
-        return trajets;
-    }
-
-    public void setTrajets(List<Trajet> trajets) {
-        this.trajets = trajets;
-    }
-
     @Override
     public String toString() {
-        return "Gare  ville=" + ville + ", regionAdmin=" + regionAdmin + ", stopArea=" + stopArea + ", trajets="
-                + trajets + "]";
+        return "Gare  ville=" + ville + ", regionAdmin=" + regionAdmin + ", stopArea=" + stopArea + "]";
     }
 
 }
