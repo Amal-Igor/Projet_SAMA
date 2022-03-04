@@ -27,10 +27,31 @@ public class Client extends AppUser {
 
 	
 
-	public Client(String nom, String prenom, String email, String username, String password, TypeUser typeUser,
-			Collection<AppUserRole> roles) {
-		super(nom, prenom, email, username, password, typeUser, roles);
-	}
+	
+
+
+
+	
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -2,6 +2,7 @@ package fr.dawan.SamaTravel.entities;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -16,6 +17,7 @@ import javax.persistence.FetchType;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
@@ -42,8 +44,8 @@ public class AppUser extends DbObject {
 
 	private String password;
 
-	@Enumerated(EnumType.STRING)
-	private TypeUser typeUser;
+//	@Enumerated(EnumType.STRING)
+//	private TypeUser typeUser;
 	
 //	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 //	private Set<AppUserRole> roles;
@@ -53,34 +55,28 @@ public class AppUser extends DbObject {
 	
 	
 	@ManyToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumn(name="rolename")
-	private Collection<AppUserRole> roles;
+	//@JoinColumn(name="rolename")
+	private Collection<AppUserRole> roles = new ArrayList<>();
+	
 
 
 	public AppUser() {
 		super();
 	}
+	
+	
 
-
-
-
-
-
-
-
-
-	public AppUser(String nom, String prenom, String email, String username, String password, TypeUser typeUser, Collection<AppUserRole> roles) {
+	public AppUser(String nom, String prenom, String email, String username, String password,
+			List<Reservation> reservations, Collection<AppUserRole> role) {
 		super();
 		this.nom = nom;
 		this.prenom = prenom;
 		this.email = email;
 		this.username = username;
 		this.password = password;
-		this.roles = new ArrayList<>();
-		this.typeUser = TypeUser.CLIENT;
+		this.reservations = reservations;
+		this.roles = role;
 	}
-
-
 
 	public String getNom() {
 		return nom;
@@ -122,19 +118,11 @@ public class AppUser extends DbObject {
 		this.username = username;
 	}
 
-
-
-
+	
 
 	public Collection<AppUserRole> getRoles() {
 		return roles;
 	}
-
-
-
-
-
-
 
 
 
@@ -144,16 +132,10 @@ public class AppUser extends DbObject {
 
 
 
-
-
-
-
-
-
 	@Override
 	public String toString() {
 		return "AppUser [nom=" + nom + ", prenom=" + prenom + ", email=" + email + ", username=" + username
-				+ ", password=" + password + ", typeUser=" + typeUser + ", roles= ";
+				+ ", password=" + password + "roles= ";
 	}
 
 

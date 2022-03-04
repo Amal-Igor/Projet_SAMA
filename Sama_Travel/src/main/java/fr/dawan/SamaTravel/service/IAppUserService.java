@@ -2,6 +2,7 @@ package fr.dawan.SamaTravel.service;
 
 import fr.dawan.SamaTravel.entities.AppUser;
 import fr.dawan.SamaTravel.entities.AppUserRole;
+import fr.dawan.SamaTravel.entities.TypeUser;
 
 public interface IAppUserService {
 	
@@ -19,6 +20,6 @@ public interface IAppUserService {
 	public void addRoleToUser(String username, String roleName);
 
 	AppUserRole saveRole(AppUserRole role);
-	
+
 	
 }

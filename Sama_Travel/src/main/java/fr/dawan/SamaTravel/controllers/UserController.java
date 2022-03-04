@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import fr.dawan.SamaTravel.entities.AppUser;
 import fr.dawan.SamaTravel.entities.AppUserRole;
+import fr.dawan.SamaTravel.entities.TypeUser;
 import fr.dawan.SamaTravel.models.AuthenticationRequest;
 import fr.dawan.SamaTravel.models.SignupRequest;
 import fr.dawan.SamaTravel.securityconfig.JWTAuthenticationFilter;
@@ -109,7 +110,7 @@ public class UserController {
 		userToAdd.setUsername(signupRequest.getUsername());
 
 		userService.saveUser(userToAdd);
-		userService.addRoleToUser(signupRequest.getUsername(), "CLIENT");
+		userService.addRoleToUser(signupRequest.getUsername(), "USER");
 		// On assigne le rôle après l'enregistrement
 		return new ResponseEntity<AppUser>(userToAdd, HttpStatus.OK);
 	}
