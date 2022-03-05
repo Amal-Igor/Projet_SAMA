@@ -1,5 +1,7 @@
 package fr.dawan.SamaTravel.service;
 
+import java.util.List;
+
 import fr.dawan.SamaTravel.entities.AppUser;
 import fr.dawan.SamaTravel.entities.AppUserRole;
 import fr.dawan.SamaTravel.entities.TypeUser;
@@ -20,6 +22,9 @@ public interface IAppUserService {
 	public void addRoleToUser(String username, String roleName);
 
 	AppUserRole saveRole(AppUserRole role);
+	
+
+	List<AppUser> getAllAppUser();
 
 	
 }

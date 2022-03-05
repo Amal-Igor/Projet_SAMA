@@ -1,5 +1,8 @@
 package fr.dawan.SamaTravel.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -101,6 +104,17 @@ public class AppUserServiceImpl implements IAppUserService {
 //		// TODO Auto-generated method stub
 //		
 //	}
+
+	@Override
+	public List<AppUser> getAllAppUser() {
+	
+		List<AppUser> lstUser = new ArrayList<AppUser>();
+		lstUser = appUserRepository.findAll();
+		
+		return lstUser;
+}
+
+	
 
 	
 

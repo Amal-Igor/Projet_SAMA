@@ -1,23 +1,18 @@
 package fr.dawan.SamaTravel.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.dawan.SamaTravel.entities.AppUser;
-import fr.dawan.SamaTravel.entities.AppUserRole;
-import fr.dawan.SamaTravel.entities.TypeUser;
-import fr.dawan.SamaTravel.models.AuthenticationRequest;
 import fr.dawan.SamaTravel.models.SignupRequest;
-import fr.dawan.SamaTravel.securityconfig.JWTAuthenticationFilter;
 import fr.dawan.SamaTravel.service.IAppUserService;
 
 @RestController
@@ -28,6 +23,8 @@ public class UserController {
 
 	@Autowired
 	BCryptPasswordEncoder bcrypt;
+
+	
 
 
 	
@@ -91,6 +88,8 @@ public class UserController {
 //	                                   userDetails.getEmail(),
 //	                                   roles));
 //	  }
+	
+	
 
 	@PostMapping(value = "/register", produces = "application/json")
 	public ResponseEntity<?> getById(@RequestBody SignupRequest signupRequest) {

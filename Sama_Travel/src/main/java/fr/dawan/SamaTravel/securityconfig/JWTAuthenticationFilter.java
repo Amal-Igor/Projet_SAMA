@@ -72,6 +72,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 		System.out.println(springUser.getAuthorities() + "*****************************************");
 		// Renvoie le token
 		response.addHeader(SecurityConstants.HEADER_STRING, SecurityConstants.TOKEN_PREFIX + jwt);
+		response.getWriter().write(springUser.getUsername());
 	}
 
 }
