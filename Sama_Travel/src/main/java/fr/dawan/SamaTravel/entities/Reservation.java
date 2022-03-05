@@ -1,78 +1,75 @@
 package fr.dawan.SamaTravel.entities;
 
-import fr.dawan.SamaTravel.entities.Client;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
-import org.springframework.stereotype.Component;
-
-
-@Component
 @Entity
-public class Reservation extends DbObject{
-	
+public class Reservation extends DbObject {
 
-	private int prix;
-	
-	@ManyToMany(targetEntity = Trajet.class, cascade = CascadeType.ALL)
-	private List<Trajet> trajets;
-	
-	@ManyToOne(targetEntity = Client.class, cascade = CascadeType.ALL)
-	private List<Client> users;
-	
-	public Reservation() {
-		super();
-		trajets = new ArrayList<Trajet>();
-		users = new ArrayList<Client>();
-	}
+    private String arrive;
+    private String depart;
+    private String date;
+    private double prix;
 
-	public Reservation(int prix) {
-		super();
-		this.prix = prix;
-		trajets = new ArrayList<Trajet>();
-		users = new ArrayList<Client>();
-	}
+    @ManyToOne
+    private AppUser users;
 
+    public Reservation() {
+        super();
+    }
 
+    public Reservation(double prix, String arrive, String depart, String date) {
+        super();
+        this.arrive = arrive;
+        this.depart = depart;
+        this.date = date;
+        this.prix = prix;
+    }
 
-	public int getPrix() {
-		return prix;
-	}
+    public String getArrive() {
+        return arrive;
+    }
 
-	public void setPrix(int prix) {
-		this.prix = prix;
-	}
+    public void setArrive(String arrive) {
+        this.arrive = arrive;
+    }
 
-	public List<Trajet> getTrajets() {
-		return trajets;
-	}
+    public String getDepart() {
+        return depart;
+    }
 
-	public void setTrajets(List<Trajet> trajets) {
-		this.trajets = trajets;
-	}
+    public void setDepart(String depart) {
+        this.depart = depart;
+    }
 
+    public AppUser getUsers() {
+        return users;
+    }
 
+    public void setUsers(AppUser users) {
+        this.users = users;
+    }
 
-	public List<Client> getUsers() {
-		return users;
-	}
+    public String getDate() {
+        return date;
+    }
 
-	public void setUsers(List<Client> users) {
-		this.users = users;
-	}
+    public void setDate(String date) {
+        this.date = date;
+    }
 
-	@Override
-	public String toString() {
-		return "Reservation[ prix=" + prix + ", trajets=" + trajets + ", user=" + users + "]";
-	}
+    public double getPrix() {
+        return prix;
+    }
+
+    public void setPrix(double prix) {
+        this.prix = prix;
+    }
+
+    @Override
+    public String toString() {
+        return "Reservation [arrive=" + arrive + ", depart=" + depart + ", date=" + date + ", prix=" + prix + ", users="
+                + users + "]";
+    }
 
 }
