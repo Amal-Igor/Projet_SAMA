@@ -31,7 +31,7 @@ public class AccountController {
 	
 	
 	@GetMapping("/{username}")
-	public List<String> getInfosFromUsers(@PathVariable String username, HttpServletRequest req, HttpServletResponse res) throws IOException{
+	public List<String> getInfosFromUsers(@PathVariable String username, HttpServletResponse res) throws IOException{
 		
 		if(userService.findByUsername(username) == null) {
 			res.setStatus(404);
