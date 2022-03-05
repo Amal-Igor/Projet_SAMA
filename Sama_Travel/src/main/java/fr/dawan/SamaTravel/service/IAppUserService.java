@@ -4,7 +4,6 @@ import java.util.List;
 
 import fr.dawan.SamaTravel.entities.AppUser;
 import fr.dawan.SamaTravel.entities.AppUserRole;
-import fr.dawan.SamaTravel.entities.TypeUser;
 
 public interface IAppUserService {
 	
@@ -22,6 +21,8 @@ public interface IAppUserService {
 	public void addRoleToUser(String username, String roleName);
 
 	AppUserRole saveRole(AppUserRole role);
+	
+	public void deleteUserByUsername(String username);
 	
 
 	List<AppUser> getAllAppUser();

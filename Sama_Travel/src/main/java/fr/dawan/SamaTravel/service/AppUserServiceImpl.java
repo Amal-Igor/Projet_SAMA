@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import fr.dawan.SamaTravel.entities.AppUser;
 import fr.dawan.SamaTravel.entities.AppUserRole;
-//import fr.dawan.SamaTravel.entities.AppUserRole;
 import fr.dawan.SamaTravel.repositories.AppUserRepository;
 import fr.dawan.SamaTravel.repositories.AppUserRoleRepository;
 
@@ -65,11 +64,7 @@ public class AppUserServiceImpl implements IAppUserService {
 		return roleRepository.save(role);
 	}
 
-//	@Override
-//	public void addRoleToUser(String username, String roleName) {
-//		// TODO Auto-generated method stub
-//		
-//	}
+
 
 
 
@@ -118,12 +113,22 @@ public class AppUserServiceImpl implements IAppUserService {
 	public List<String> getUserInformations(String username) {
 		AppUser u = appUserRepository.findByUsername(username);
 		List<String> lst = new ArrayList<>();
+		
+		Long userId = u.getId();
+		String userIdToString = Long.toString(userId);
+		lst.add(userIdToString);
 		lst.add(u.getUsername());
 		lst.add(u.getNom());
 		lst.add(u.getPrenom());
 		lst.add(u.getEmail());		
 		
 		return lst;
+	}
+
+	@Override
+	public void deleteUserByUsername(String username) {
+		AppUser u = appUserRepository.findByUsername(username);
+		appUserRepository.delete(u);
 	}
 
 	

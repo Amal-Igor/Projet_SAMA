@@ -1,6 +1,5 @@
 package fr.dawan.SamaTravel.models;
 
-import fr.dawan.SamaTravel.entities.TypeUser;
 
 public class SignupRequest {
 

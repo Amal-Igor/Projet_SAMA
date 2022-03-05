@@ -38,9 +38,9 @@ public class AppUserDetailsService implements UserDetailsService {
 		
 
 		Collection<GrantedAuthority> authorities = new ArrayList<>();
-//		user.getRoles().forEach(r -> {
-//			authorities.add(new SimpleGrantedAuthority(r.getName()));
-//		});
+		user.getRoles().forEach(r -> {
+			authorities.add(new SimpleGrantedAuthority(r.getRole()));
+		});
 		return new User(user.getUsername(), user.getPassword(), authorities);
 	}
 

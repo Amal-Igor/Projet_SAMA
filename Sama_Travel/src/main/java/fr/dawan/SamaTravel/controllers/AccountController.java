@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import fr.dawan.SamaTravel.service.IAppUserService;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/account")
 public class AccountController {
 	
 	@Autowired
@@ -23,7 +23,6 @@ public class AccountController {
 	public List<String> getInfosFromUsers(@PathVariable String username){
 		List<String> lst = new ArrayList<>();
 		lst = userService.getUserInformations(username);
-		
 		return lst;
 	}
 }

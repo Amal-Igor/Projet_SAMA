@@ -3,7 +3,9 @@ package fr.dawan.SamaTravel.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,4 +28,15 @@ public class AdminController {
 		List<AppUser> userLst = userService.getAllAppUser();
 		return userLst;
 	}
+	
+	@DeleteMapping(value="/users/{username}")
+	public void deleteUserByUsername(@PathVariable String username) {
+		AppUser u = userService.findByUsername(username);
+		if(u != null) { 
+			userService.deleteUserByUsername(username);
+		}
+		//TODO Finir de modifier le controller en cas de username non existant
+
+	}
+	
 }

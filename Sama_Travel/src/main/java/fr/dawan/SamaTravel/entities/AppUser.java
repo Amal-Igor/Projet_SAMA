@@ -50,8 +50,8 @@ public class AppUser extends DbObject {
 //	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 //	private Set<AppUserRole> roles;
 
-	@OneToMany(mappedBy = "users", cascade = CascadeType.ALL)
-	private List<Reservation> reservations;
+	@OneToMany
+	private List<Reservation> reservations = new ArrayList<>();
 	
 	
 	@ManyToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
