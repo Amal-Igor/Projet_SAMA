@@ -44,12 +44,6 @@ public class AppUser extends DbObject {
 
 	private String password;
 
-//	@Enumerated(EnumType.STRING)
-//	private TypeUser typeUser;
-	
-//	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-//	private Set<AppUserRole> roles;
-
 	@OneToMany
 	private List<Reservation> reservations = new ArrayList<>();
 	
@@ -130,7 +124,15 @@ public class AppUser extends DbObject {
 		this.roles = roles;
 	}
 
+	
 
+	public List<Reservation> getReservations() {
+		return reservations;
+	}
+
+	public void setReservations(List<Reservation> reservations) {
+		this.reservations = reservations;
+	}
 
 	@Override
 	public String toString() {

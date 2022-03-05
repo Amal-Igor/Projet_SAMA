@@ -4,6 +4,7 @@ import java.util.List;
 
 import fr.dawan.SamaTravel.entities.AppUser;
 import fr.dawan.SamaTravel.entities.AppUserRole;
+import fr.dawan.SamaTravel.entities.Reservation;
 
 public interface IAppUserService {
 	
@@ -28,6 +29,10 @@ public interface IAppUserService {
 	List<AppUser> getAllAppUser();
 	
 	List<String> getUserInformations(String username);
+	
+	public void addReservationToUser(String username, Reservation resa);
+	
+	List<Reservation> getReservations(String username);
 
 	
 }

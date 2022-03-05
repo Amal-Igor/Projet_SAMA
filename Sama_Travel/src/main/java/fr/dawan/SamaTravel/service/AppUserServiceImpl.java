@@ -10,8 +10,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import fr.dawan.SamaTravel.entities.AppUser;
 import fr.dawan.SamaTravel.entities.AppUserRole;
+import fr.dawan.SamaTravel.entities.Reservation;
 import fr.dawan.SamaTravel.repositories.AppUserRepository;
 import fr.dawan.SamaTravel.repositories.AppUserRoleRepository;
+import fr.dawan.SamaTravel.repositories.ReservationRepository;
 
 
 @Service
@@ -26,6 +28,10 @@ public class AppUserServiceImpl implements IAppUserService {
 	
 	@Autowired
 	AppUserRoleRepository roleRepository;
+	
+	@Autowired
+	ReservationRepository reservationRepository;
+	
 	
 	@Override
 	public AppUser findByUsername(String username) {
@@ -112,11 +118,18 @@ public class AppUserServiceImpl implements IAppUserService {
 	@Override
 	public List<String> getUserInformations(String username) {
 		AppUser u = appUserRepository.findByUsername(username);
+		
+		
+		if(u == null) {
+			return null;
+		}
 		List<String> lst = new ArrayList<>();
 		
-		Long userId = u.getId();
-		String userIdToString = Long.toString(userId);
-		lst.add(userIdToString);
+		
+		//TODO Créer une méthode pour récupérer l'id
+		//Long userId = u.getId();
+		//String userIdToString = Long.toString(userId);
+		//lst.add(userIdToString);
 		lst.add(u.getUsername());
 		lst.add(u.getNom());
 		lst.add(u.getPrenom());
@@ -129,6 +142,30 @@ public class AppUserServiceImpl implements IAppUserService {
 	public void deleteUserByUsername(String username) {
 		AppUser u = appUserRepository.findByUsername(username);
 		appUserRepository.delete(u);
+	}
+	
+	
+
+	@Override
+	public List<Reservation> getReservations(String username) {
+		AppUser u = appUserRepository.findByUsername(username);
+		if(u.getReservations() == null) {
+			return null;
+			}
+		
+		List<Reservation> lst = u.getReservations();
+		return lst;
+		
+	}
+
+	@Override
+	public void addReservationToUser(String username, Reservation resa) {
+		//reservationRepository.save(resa);
+		AppUser u = appUserRepository.findByUsername(username);
+		
+		
+		u.getReservations().add(resa);
+		
 	}
 
 	
