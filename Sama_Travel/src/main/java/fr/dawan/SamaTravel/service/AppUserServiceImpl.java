@@ -1,4 +1,4 @@
-package fr.dawan.SamaTravel.service;
+	package fr.dawan.SamaTravel.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -113,6 +113,18 @@ public class AppUserServiceImpl implements IAppUserService {
 		
 		return lstUser;
 }
+
+	@Override
+	public List<String> getUserInformations(String username) {
+		AppUser u = appUserRepository.findByUsername(username);
+		List<String> lst = new ArrayList<>();
+		lst.add(u.getUsername());
+		lst.add(u.getNom());
+		lst.add(u.getPrenom());
+		lst.add(u.getEmail());		
+		
+		return lst;
+	}
 
 	
 

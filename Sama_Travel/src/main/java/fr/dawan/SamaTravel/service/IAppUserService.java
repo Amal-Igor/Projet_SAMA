@@ -25,6 +25,8 @@ public interface IAppUserService {
 	
 
 	List<AppUser> getAllAppUser();
+	
+	List<String> getUserInformations(String username);
 
 	
 }
