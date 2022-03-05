@@ -64,7 +64,7 @@ public class AppUser extends DbObject {
 		super();
 	}
 	
-	
+	//TODO TEST
 
 	public AppUser(String nom, String prenom, String email, String username, String password,
 			List<Reservation> reservations, Collection<AppUserRole> role) {
