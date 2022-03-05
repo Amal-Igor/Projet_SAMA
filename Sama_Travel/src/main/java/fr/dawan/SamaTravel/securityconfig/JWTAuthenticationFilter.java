@@ -19,6 +19,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import fr.dawan.SamaTravel.entities.AppUser;
+import fr.dawan.SamaTravel.repositories.AppUserRepository;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
@@ -27,6 +28,8 @@ import io.jsonwebtoken.SignatureAlgorithm;
  */
 
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
+	
+
 
 	@Autowired
 	AuthenticationManager authenticationManager;
@@ -61,7 +64,6 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 		
 		//TODO Pourquoi le cast??
 		User springUser = (User) authResult.getPrincipal();
-		
 		
 		// Construction du token
 		String jwt = Jwts.builder().setSubject(springUser.getUsername())

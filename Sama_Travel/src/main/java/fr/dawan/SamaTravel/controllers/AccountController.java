@@ -25,4 +25,7 @@ public class AccountController {
 		lst = userService.getUserInformations(username);
 		return lst;
 	}
+	
+	
+	//TODO Implementer controller pour modifier infos user
 }

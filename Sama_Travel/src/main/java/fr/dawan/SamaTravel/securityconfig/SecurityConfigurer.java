@@ -57,7 +57,7 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 		.authorizeRequests().antMatchers("/login/**", "/register/**", "/account/**").permitAll(); //Ici on peut ajouter les routes sur lesquels aucune authentification n'est due
 		
 		
-		http.authorizeRequests().antMatchers( "/admin/**").hasAuthority("ADMIN");
+		http.authorizeRequests().antMatchers("/admin/**").hasAuthority("ADMIN");
 		
 		
 		http.authorizeRequests().anyRequest().authenticated();
