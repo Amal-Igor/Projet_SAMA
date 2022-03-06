@@ -33,6 +33,8 @@ public class JWTAuthorisationFilter extends OncePerRequestFilter {
 		 * Permet de régler le problème de CORS Ici j'autorise tous les domaine à
 		 * m'envoyer des requêtes
 		 */
+		
+		
 		response.addHeader("Access-Control-Allow-Origin", "*");
 
 		/*

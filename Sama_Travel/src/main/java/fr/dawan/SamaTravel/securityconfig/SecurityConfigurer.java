@@ -13,6 +13,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 
 @Configuration
@@ -51,11 +52,15 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 		// On desactive les sessions
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 		
+		
+		
 		http.csrf().disable()
 		.authorizeRequests().antMatchers("/login/**", "/register/**").permitAll(); //Ici on peut ajouter les routes sur lesquels aucune authentification n'est due
 		
 		
-		http.authorizeRequests().antMatchers("/account/**").hasAuthority("USER");
+		http.authorizeRequests().antMatchers("/account/**" ).hasAnyAuthority("USER", "ADMIN");
+		//http.authorizeRequests().antMatchers("/account/**" ).hasAuthority("ADMIN");
+
 		
 		http.authorizeRequests().antMatchers("/admin/**").hasAuthority("ADMIN");
 		
