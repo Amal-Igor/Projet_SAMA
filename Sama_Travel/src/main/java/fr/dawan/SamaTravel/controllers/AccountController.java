@@ -4,18 +4,19 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.dawan.SamaTravel.entities.Reservation;
+import fr.dawan.SamaTravel.models.UpdateUserDto;
 import fr.dawan.SamaTravel.service.IAppUserService;
 import fr.dawan.SamaTravel.service.IReservationService;
 
@@ -43,6 +44,13 @@ public class AccountController {
 		return lst;
 	}
 	
+	@PutMapping("/{username}")
+	public void updateUserInfos(@PathVariable String username, @RequestBody UpdateUserDto updateDto) {
+		userService.updateUser(username, updateDto);
+	}
+	
+	//TODO Implementer controller pour modifier infos user
+	
 	
 	@PostMapping("/{username}/save")
 	public void saveReserveration(@PathVariable String username, @RequestBody Reservation resa) {
@@ -60,5 +68,7 @@ public class AccountController {
 	}
 	
 	
-	//TODO Implementer controller pour modifier infos user
+	
+	
+	
 }

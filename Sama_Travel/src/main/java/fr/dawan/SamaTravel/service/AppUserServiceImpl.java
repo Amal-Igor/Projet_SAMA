@@ -11,6 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 import fr.dawan.SamaTravel.entities.AppUser;
 import fr.dawan.SamaTravel.entities.AppUserRole;
 import fr.dawan.SamaTravel.entities.Reservation;
+import fr.dawan.SamaTravel.models.SignupRequest;
+import fr.dawan.SamaTravel.models.UpdateUserDto;
 import fr.dawan.SamaTravel.repositories.AppUserRepository;
 import fr.dawan.SamaTravel.repositories.AppUserRoleRepository;
 import fr.dawan.SamaTravel.repositories.ReservationRepository;
@@ -165,6 +167,16 @@ public class AppUserServiceImpl implements IAppUserService {
 		
 		
 		u.getReservations().add(resa);
+		
+	}
+
+	@Override
+	public void updateUser(String username, UpdateUserDto updateDto) {
+		AppUser u = appUserRepository.findByUsername(username);
+	
+		u.setPrenom(updateDto.getPrenom());
+		u.setNom(updateDto.getNom());
+		u.setEmail(updateDto.getEmail());
 		
 	}
 

@@ -5,6 +5,8 @@ import java.util.List;
 import fr.dawan.SamaTravel.entities.AppUser;
 import fr.dawan.SamaTravel.entities.AppUserRole;
 import fr.dawan.SamaTravel.entities.Reservation;
+import fr.dawan.SamaTravel.models.SignupRequest;
+import fr.dawan.SamaTravel.models.UpdateUserDto;
 
 public interface IAppUserService {
 	
@@ -15,17 +17,14 @@ public interface IAppUserService {
 
 	public void saveUser(AppUser appUser);
 	
-//	//Methode permettant d'ajouter un role dans notre Application
-//	public AppUserRole saveRole(AppUserRole role);
-//		
-		//Methode permettant d'ajouter un rôle à un utilisateur
+	public void updateUser(String username, UpdateUserDto updateDto);
+	
 	public void addRoleToUser(String username, String roleName);
 
 	AppUserRole saveRole(AppUserRole role);
 	
 	public void deleteUserByUsername(String username);
 	
-
 	List<AppUser> getAllAppUser();
 	
 	List<String> getUserInformations(String username);
